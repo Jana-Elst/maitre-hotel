@@ -1,6 +1,9 @@
-const TableCard = ({ id }) => {
+import { useState } from "react";
+
+const TableCard = ({ id, setIsActive }) => {
     return (
-        <button>
+        <button
+            onClick={() => (setIsActive("menu"))}>
             <article>
                 <h3>Tafel {id}</h3>
             </article>

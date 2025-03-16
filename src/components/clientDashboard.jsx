@@ -2,7 +2,7 @@ import ClientList from "./clientList";
 
 const ClientDashboard = ({ }) => {
     return (
-        <section>
+        <section className="dashboard clients">
             <h2>Overzicht</h2>
             <ClientList/>
             <button>reservering</button>

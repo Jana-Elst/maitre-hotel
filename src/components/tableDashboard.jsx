@@ -1,11 +1,12 @@
 import TableCard from "./tableCard";
+import { useState } from "react";
 
-const TableDashboard = ({tables}) => {
+const TableDashboard = ({ tables, isActive, setIsActive }) => {
     return (
-        <section>
+        <section className={`dashboard tables ${isActive === "tables" ? "" : "hidden"}`}>
             <ul>
                 {tables.map((table) => (
-                    <TableCard id = {table.id}/>
+                    <TableCard id={table.id} key={table.id} isActive={isActive} setIsActive={setIsActive} />
                 ))}
             </ul>
         </section>

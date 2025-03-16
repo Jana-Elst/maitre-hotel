@@ -3,6 +3,10 @@ import './App.css'
 import ClientDashboard from './components/clientDashboard';
 import OrderDashboard from './components/orderDashboard';
 import TableDashboard from './components/tableDashboard';
+import MenuDashboard from './components/menuDashboard';
+import ClientDetail from './components/clientDetail';
+
+
 
 
 function App() {
@@ -159,13 +163,19 @@ function App() {
 
   const clientData = {};
 
+  const [isActive, setIsActive] = useState("tables");
+
+
   return (
-    <>
+    <div className='app'>
       <h1 className="visually-hidden">Restaurant Dashboard</h1>
       <OrderDashboard />
       <ClientDashboard />
-      <TableDashboard tables={restaurantData.tables} />
-    </>
+      <ClientDetail isActive={isActive}/>
+      <TableDashboard tables={restaurantData.tables} isActive={isActive} setIsActive={setIsActive} />
+      <MenuDashboard productData={productData} isActive={isActive} setIsActive={setIsActive} />
+    </div>
+
   )
 }
 
