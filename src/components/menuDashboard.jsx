@@ -1,7 +1,32 @@
 import MenuList from "./menuList";
 import { useState } from 'react'
 
-const MenuDashboard = ({ productData, isActive, setIsActive, order, setOrder }) => {
+const stopOrder = (setOrder, order, orderKitchen, setOrderKitchen, setIsActive) => {
+    console.log("order is afgerond");
+    //Send order to kitchen
+    const id = Object.keys(orderKitchen).length + 1;
+    setOrderKitchen(
+        {
+            ...orderKitchen,
+            [id]: { ...order }
+        }
+    );
+
+    console.log(orderKitchen);
+
+    //Add order to bill table
+
+    //Reset order
+    setOrder({});
+
+    //Back to tables
+    setIsActive({
+        dashboard: "tables",
+        id: null,
+    });
+}
+
+const MenuDashboard = ({ productData, isActive, setIsActive, order, setOrder, orderKitchen, setOrderKitchen }) => {
     const [category, setCategory] = useState("dranken");
     const [subCategory, setSubCategory] = useState("thee");
 
@@ -36,10 +61,7 @@ const MenuDashboard = ({ productData, isActive, setIsActive, order, setOrder }) 
 
             {/* menu items */}
             <MenuList productData={productData[category].find((item) => item[subCategory])} subCategory={subCategory} order={order} setOrder={setOrder} />
-            <button onClick={() => setIsActive({
-                dashboard: "tables",
-                id: null,
-            })}>bestelling afronden</button>
+            <button onClick={() => stopOrder(setOrder, order, orderKitchen, setOrderKitchen, setIsActive)}>bestelling afronden</button>
         </section >
     );
 };

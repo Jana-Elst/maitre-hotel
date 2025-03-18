@@ -1,11 +1,4 @@
-const isEmpty = (object) => {
-    for (let key in object) {
-        if (object.hasOwnProperty(key)) {
-            return false;
-        }
-    }
-    return true;
-}
+import { isEmpty } from "../functions";
 
 const clientDetail = ({ isActive, order, setOrder }) => {
     return (
@@ -16,9 +9,11 @@ const clientDetail = ({ isActive, order, setOrder }) => {
                 {!isEmpty(order) ? (
                     Object.keys(order).map((item) => (
                         <li>
-                            <p>{item}</p>
-                            <p>x {order[item].amount}</p>
-                            <p>€ {order[item].price}</p>
+                            <button>
+                                <p>{item}</p>
+                                <p>x {order[item].amount}</p>
+                                <p>€ {order[item].price}</p>
+                            </button>
                         </li>
                     ))
                 ): "geen bestellingen"}

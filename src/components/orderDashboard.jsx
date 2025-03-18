@@ -1,10 +1,21 @@
 import OrderList from "./orderList";
+import { isEmpty } from "../functions";
+import OrderCard from "./orderCard";
 
-const ClientDashboard = ({ }) => {
+const ClientDashboard = ({orderKitchen}) => {
     return (
         <section className="dashboard orders">
             <h2>Orders</h2>
-            <OrderList />
+
+            <ul>
+                {!isEmpty(orderKitchen) ? (
+                    Object.keys(orderKitchen).map((id) => (
+                        <li>
+                            <OrderCard id={id} order={orderKitchen[id]} />
+                        </li>
+                    ))
+                ) : "alle bestellingen zijn verwerkt"}
+            </ul>
         </section>
     );
 };

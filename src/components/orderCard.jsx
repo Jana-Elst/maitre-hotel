@@ -1,10 +1,17 @@
-const OrderCard = ({ }) => {
+const OrderCard = ({ id, order }) => {
     return (
         <article>
-            <h3>ID bestelling</h3>
+            {console.log(order)}
+            <h3>#{id}</h3>
             <p>naam tafel</p>
             <ul>
-                <li>bestelling 1</li>
+                {
+                    Object.keys(order).map((name) => (
+                        <li>
+                            {name} x {order[name].amount}
+                        </li>
+                    ))
+                }
             </ul>
         </article>
     );
