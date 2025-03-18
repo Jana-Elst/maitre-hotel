@@ -1,12 +1,10 @@
 import MenuCard from "./menuCard";
 
-const MenuList = ({ productData, subCategory }) => {
+const MenuList = ({ productData, subCategory, setOrder, order }) => {
     return (
         <ul>
-            {console.log(productData[subCategory])}
-
             {Object.values(productData[subCategory]).map((item) => (
-                <MenuCard key={item.name} productData={item} />
+                <MenuCard key={item.name} productData={item} order={order} setOrder={setOrder} />
             ))}
         </ul>
     );

@@ -3,7 +3,10 @@ import { useState } from "react";
 const TableCard = ({ id, setIsActive }) => {
     return (
         <button
-            onClick={() => (setIsActive("menu"))}>
+            onClick={() => setIsActive({
+                dashboard: "menu",
+                id: id,
+            })}>
             <article>
                 <h3>Tafel {id}</h3>
             </article>

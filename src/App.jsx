@@ -164,23 +164,21 @@ function App() {
     ]
   }
 
-  const orderData = {}
+  const [ordersKitchen, setOrdersKitchen] = useState({}); //gerechten die keuken moet maken
+  const [clientData, setClientData] = useState({}); //alles wat de klant besteld heeft en moet betalen
+  const [order, setOrder] = useState({}); //order dat opgenomen wordt
 
-  const clientData = {};
-
-  const [isActive, setIsActive] = useState("tables");
-
+  const [isActive, setIsActive] = useState({ dashboard: "tables", id: null });
 
   return (
     <div className='app' >
       <h1 className="visually-hidden">Restaurant Dashboard</h1>
       <OrderDashboard />
       <ClientDashboard />
-      <ClientDetail isActive={isActive} />
+      <ClientDetail isActive={isActive} clientData={clientData} setClientData={setClientData} order={order} setOrder={setOrder} />
       <TableDashboard tables={restaurantData.tables} isActive={isActive} setIsActive={setIsActive} />
-      <MenuDashboard productData={productData} isActive={isActive} setIsActive={setIsActive} />
+      <MenuDashboard productData={productData} isActive={isActive} setIsActive={setIsActive} clientData={clientData} setClientData={setClientData} setOrder={setOrder} order={order} />
     </div >
-
   )
 }
 

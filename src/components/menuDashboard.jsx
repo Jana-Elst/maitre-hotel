@@ -1,12 +1,12 @@
 import MenuList from "./menuList";
 import { useState } from 'react'
 
-const MenuDashboard = ({ productData, isActive, setIsActive }) => {
+const MenuDashboard = ({ productData, isActive, setIsActive, order, setOrder }) => {
     const [category, setCategory] = useState("dranken");
     const [subCategory, setSubCategory] = useState("thee");
 
     return (
-        <section className={`dashboard tables ${isActive === "menu" ? "" : "hidden"}`}>
+        <section className={`dashboard tables ${isActive.dashboard === "menu" ? "" : "hidden"}`}>
             <h2>Menu</h2>
 
             {/* navigatie != onderdelen menu */}
@@ -35,9 +35,11 @@ const MenuDashboard = ({ productData, isActive, setIsActive }) => {
             </ul>
 
             {/* menu items */}
-            <MenuList productData={productData[category].find((item) => item[subCategory])} subCategory={subCategory} />
-
-            <button onClick={() => setIsActive("tables")}>bestelling afronden</button>
+            <MenuList productData={productData[category].find((item) => item[subCategory])} subCategory={subCategory} order={order} setOrder={setOrder} />
+            <button onClick={() => setIsActive({
+                dashboard: "tables",
+                id: null,
+            })}>bestelling afronden</button>
         </section >
     );
 };
