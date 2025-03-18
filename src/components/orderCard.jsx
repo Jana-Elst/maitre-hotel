@@ -1,18 +1,21 @@
-const OrderCard = ({ id, order }) => {
+const OrderCard = ({ id, orderData }) => {
     return (
         <article>
-            {console.log(order)}
+            {console.log(orderData)}
             <h3>#{id}</h3>
-            <p>naam tafel</p>
+            <p>tafel {orderData.table}</p>
             <ul>
                 {
-                    Object.keys(order).map((name) => (
-                        <li>
-                            {name} x {order[name].amount}
-                        </li>
+                    Object.keys(orderData.order).map((order) => (
+                        <div>
+                            <input type="checkbox" id={order} name={order} />
+                            <label for={order}>{orderData.order[order].amount} x {order}</label>
+                        </div>
                     ))
                 }
             </ul>
+
+            <button>Serve</button>
         </article>
     );
 };

@@ -1,20 +1,39 @@
 import MenuList from "./menuList";
 import { useState } from 'react'
+import { isEmpty } from "../functions";
 
-const stopOrder = (setOrder, order, orderKitchen, setOrderKitchen, setIsActive) => {
+const stopOrder = (setOrder, order, orderKitchen, setOrderKitchen, setIsActive, isActive, clientData, setClientData) => {
     console.log("order is afgerond");
     //Send order to kitchen
     const id = Object.keys(orderKitchen).length + 1;
-    setOrderKitchen(
-        {
-            ...orderKitchen,
-            [id]: { ...order }
-        }
-    );
+
+    {
+        !isEmpty(order) ? setOrderKitchen(
+            {
+                ...orderKitchen,
+                [id]: {
+                    table: isActive.id,
+                    order: { ...order }
+                }
+            }
+        ) : "";
+    }
 
     console.log(orderKitchen);
 
     //Add order to bill table
+    {
+        !isEmpty(order) ? setClientData(
+            {
+                ...clientData,
+                //data toevoegen en checken of client al bestaat.
+                // [isActive.id]: {
+                //     ...order
+                // }
+            }
+        ) : "";
+    }
+
 
     //Reset order
     setOrder({});
@@ -26,7 +45,7 @@ const stopOrder = (setOrder, order, orderKitchen, setOrderKitchen, setIsActive) 
     });
 }
 
-const MenuDashboard = ({ productData, isActive, setIsActive, order, setOrder, orderKitchen, setOrderKitchen }) => {
+const MenuDashboard = ({ productData, isActive, setIsActive, order, setOrder, orderKitchen, setOrderKitchen, clientData, setClientData }) => {
     const [category, setCategory] = useState("dranken");
     const [subCategory, setSubCategory] = useState("thee");
 
@@ -61,7 +80,7 @@ const MenuDashboard = ({ productData, isActive, setIsActive, order, setOrder, or
 
             {/* menu items */}
             <MenuList productData={productData[category].find((item) => item[subCategory])} subCategory={subCategory} order={order} setOrder={setOrder} />
-            <button onClick={() => stopOrder(setOrder, order, orderKitchen, setOrderKitchen, setIsActive)}>bestelling afronden</button>
+            <button onClick={() => stopOrder(setOrder, order, orderKitchen, setOrderKitchen, setIsActive, isActive, clientData, setClientData)}>bestelling afronden</button>
         </section >
     );
 };

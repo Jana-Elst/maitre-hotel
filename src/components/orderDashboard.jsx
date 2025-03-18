@@ -7,11 +7,11 @@ const ClientDashboard = ({orderKitchen}) => {
         <section className="dashboard orders">
             <h2>Orders</h2>
 
-            <ul>
+            <ul className="orders__list">
                 {!isEmpty(orderKitchen) ? (
                     Object.keys(orderKitchen).map((id) => (
                         <li>
-                            <OrderCard id={id} order={orderKitchen[id]} />
+                            <OrderCard id={id} orderData={orderKitchen[id]} />
                         </li>
                     ))
                 ) : "alle bestellingen zijn verwerkt"}

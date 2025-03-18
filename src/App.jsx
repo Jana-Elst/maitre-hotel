@@ -15,14 +15,17 @@ function App() {
       {
         koffie: [
           {
+            id: 1,
             name: 'Espresso',
             price: 3,
           },
           {
+            id: 2,
             name: 'Latte',
             price: 4.30,
           },
           {
+            id: 3,
             name: 'Capuccino',
             price: 4.30,
           },
@@ -173,7 +176,7 @@ function App() {
   return (
     <div className='app' >
       <h1 className="visually-hidden">Restaurant Dashboard</h1>
-      <OrderDashboard orderKitchen={orderKitchen}/>
+      <OrderDashboard orderKitchen={orderKitchen} />
       <ClientDashboard />
       <ClientDetail isActive={isActive} clientData={clientData} setClientData={setClientData} order={order} setOrder={setOrder} />
       <TableDashboard tables={restaurantData.tables} isActive={isActive} setIsActive={setIsActive} />

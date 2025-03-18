@@ -135,6 +135,11 @@ h2 {
   font-weight: bold;
 }
 
+.orders__list {
+  display: flex;
+  gap: var(--sp-xs);
+}
+
 /* ----------------------------------------------- */
 .hidden {
   display: none;
