@@ -1,9 +1,9 @@
-const MenuCard = ({ }) => {
+const MenuCard = ({ productData }) => {
     return (
-        <article>
-            <h3>Koffie</h3>
-            <p>Prijs</p>
-        </article>
+        <button>
+            <h3>{productData.name}</h3>
+            <p>{productData.price}</p>
+        </button>
     );
 };
 

@@ -46,43 +46,48 @@ function App() {
       },
     ],
 
-    brunch: [
-      {
-        name: 'cinnamon roll',
-        price: 3.50,
-      },
-      {
-        name: 'Pancakes',
-        price: 8,
-      },
-      {
-        name: 'Yoghurt met granola',
-        price: 6,
-      }
+    brunch: [{
+      noSubcategory: [
+        {
+          name: 'cinnamon roll',
+          price: 3.50,
+        },
+        {
+          name: 'Pancakes',
+          price: 8,
+        },
+        {
+          name: 'Yoghurt met granola',
+          price: 6,
+        }]
+    }
     ],
 
-    gezelschapsspel: [
-      {
-        name: 'Rummikub',
-        value: 4,
-      },
-      {
-        name: 'Azul',
-        value: 1,
-      },
-      {
-        name: 'Uno',
-        value: 4,
-      },
-      {
-        name: 'Carcasonne',
-        value: 1,
-      },
-      {
-        name: 'Ticket to Ride',
-        value: 1,
-      },
-    ]
+    gezelschapsspel: [{
+      noSubcategory:
+        [
+          {
+            name: 'Rummikub',
+            value: 4,
+          },
+          {
+            name: 'Azul',
+            value: 1,
+          },
+          {
+            name: 'Uno',
+            value: 4,
+          },
+          {
+            name: 'Carcasonne',
+            value: 1,
+          },
+          {
+            name: 'Ticket to Ride',
+            value: 1,
+          },
+        ]
+    }]
   };
 
   const restaurantData = {
@@ -167,14 +172,14 @@ function App() {
 
 
   return (
-    <div className='app'>
+    <div className='app' >
       <h1 className="visually-hidden">Restaurant Dashboard</h1>
       <OrderDashboard />
       <ClientDashboard />
-      <ClientDetail isActive={isActive}/>
+      <ClientDetail isActive={isActive} />
       <TableDashboard tables={restaurantData.tables} isActive={isActive} setIsActive={setIsActive} />
       <MenuDashboard productData={productData} isActive={isActive} setIsActive={setIsActive} />
-    </div>
+    </div >
 
   )
 }
