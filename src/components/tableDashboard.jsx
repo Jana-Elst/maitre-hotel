@@ -1,12 +1,17 @@
-import TableCard from "./tableCard";
-import { useState } from "react";
 
-const TableDashboard = ({ tables, isActive, setIsActive }) => {
+import TableCard from './tableCard';
+
+const TableDashboard = ({ restaurantVariables,  setRestaurantVariables }) => {
+    const tables = restaurantVariables.tables;
+    const state = restaurantVariables.activeState
+
     return (
-        <section className={`dashboard tables ${isActive.dashboard === "tables" ? "" : "hidden"}`}>
+        <section className={`dashboard tables ${state === "tables" ? "" : "hidden"}`}>
             <ul>
                 {tables.map((table) => (
-                    <TableCard id={table.id} key={table.id} isActive={isActive} setIsActive={setIsActive} />
+                    <li key = {table.id}>
+                        <TableCard table={table} restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
+                    </li>
                 ))}
             </ul>
         </section>

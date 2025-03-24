@@ -1,14 +1,16 @@
-import { useState } from "react";
-
-const TableCard = ({ id, setIsActive }) => {
+const TableCard = ({ table, restaurantVariables, setRestaurantVariables }) => {
+    const tableId = table.id;
     return (
         <button
-            onClick={() => setIsActive({
-                dashboard: "menu",
-                id: id,
+            onClick={() => setRestaurantVariables({
+                ...restaurantVariables,
+                activeState: {
+                    dashboard: "menu",
+                    tableID: tableId
+                }
             })}>
             <article>
-                <h3>Tafel {id}</h3>
+                <h3>Tafel {tableId}</h3>
             </article>
         </button>
     );
