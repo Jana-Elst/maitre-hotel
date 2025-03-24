@@ -10,162 +10,36 @@ import ClientDetail from './components/clientDetail';
 
 
 function App() {
-  const productData = {
-    dranken: [
-      {
-        koffie: [
-          {
-            id: 1,
-            name: 'Espresso',
-            price: 3,
-          },
-          {
-            id: 2,
-            name: 'Latte',
-            price: 4.30,
-          },
-          {
-            id: 3,
-            name: 'Capuccino',
-            price: 4.30,
-          },
-        ]
-      },
-      {
-        thee: [
-          {
-            name: 'Gemberthee',
-            price: 4.50
-          },
-          {
-            name: 'Muntthee',
-            price: 4
-          },
-          {
-            name: 'Kamillethee',
-            price: 3
-          },
-        ]
-      },
-    ],
+  const [restaurantVariables, setRestaurantVariables] = (
+    {
+      tables: {
+        tableID: 1,
+        tableStatus: false,
+        orders: {
+          orderID: {
+            productID: {
+              amount: 1,
+              status: "ordered"
+            }
+          }
+        },
 
-    brunch: [{
-      noSubcategory: [
-        {
-          name: 'cinnamon roll',
-          price: 3.50,
-        },
-        {
-          name: 'Pancakes',
-          price: 8,
-        },
-        {
-          name: 'Yoghurt met granola',
-          price: 6,
+        games: [{
+          gameID: 1,
+          tableIDs: [3]
         }]
-    }
-    ],
 
-    gezelschapsspel: [{
-      noSubcategory:
-        [
-          {
-            name: 'Rummikub',
-            value: 4,
-          },
-          {
-            name: 'Azul',
-            value: 1,
-          },
-          {
-            name: 'Uno',
-            value: 4,
-          },
-          {
-            name: 'Carcasonne',
-            value: 1,
-          },
-          {
-            name: 'Ticket to Ride',
-            value: 1,
-          },
+      orders: [
+          {}
         ]
-    }]
-  };
-
-  const restaurantData = {
-    tables: [
-      {
-        id: 1,
-        seats: 4,
-        available: true,
-        reservation: null,
       },
-      {
-        id: 2,
-        seats: 4,
-        available: true,
-        reservation: null,
 
-      },
-      {
-        id: 3,
-        seats: 2,
-        available: true,
-        reservation: null,
-
-      },
-      {
-        id: 4,
-        seats: 8,
-        available: true,
-        reservation: null,
-
-      },
-      {
-        id: 5,
-        seats: 4,
-        available: true,
-        reservation: null,
-
-      },
-      {
-        id: 6,
-        seats: 6,
-        available: true,
-        reservation: null,
-
-      },
-      {
-        id: 7,
-        seats: 4,
-        available: true,
-        reservation: null,
-
-      },
-      {
-        id: 8,
-        seats: 4,
-        available: true,
-        reservation: null,
-
-      },
-      {
-        id: 9,
-        seats: 4,
-        available: true,
-        reservation: null,
-
-      },
-      {
-        id: 10,
-        seats: 4,
-        available: true,
-        reservation: null,
-
-      },
-    ]
-  }
+      activeState: {
+        dashboard: "tables",
+        tableID: null
+      }
+    }
+  );
 
   const [orderKitchen, setOrderKitchen] = useState({}); //gerechten die keuken moet maken
   const [clientData, setClientData] = useState({}); //alles wat de klant besteld heeft en moet betalen
