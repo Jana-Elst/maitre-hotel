@@ -126,8 +126,8 @@ function App() {
     <div className='app' >
       <h1 className="visually-hidden">Restaurant Dashboard</h1>
       <OrderDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
-      {/* <ClientDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} /> */}
-      {/* <ClientDetail restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} /> */}
+      <ClientDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
+      <ClientDetail restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
       <TableDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
       <MenuDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
     </div >

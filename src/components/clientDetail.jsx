@@ -1,23 +1,36 @@
 import { isEmpty } from "../functions";
 
-const clientDetail = ({ isActive, order, setOrder }) => {
+const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
+    if (restaurantVariables.newOrder.items) {
+        restaurantVariables.newOrder.items.map(item => {
+            console.log(item);
+        });
+    }
+
     return (
-        <article className={`dashboard clientdetail ${isActive.dashboard === "menu" ? "" : "hidden"}`} >
-            <h3>Tafel {isActive.id}</h3>
+        <article className={`dashboard clientdetail ${restaurantVariables.activeState.dashboard === "menu" ? "" : "hidden"}`} >
+            <h3>Tafel {restaurantVariables.activeState.tableId}</h3>
             <ul>
-                {console.log(order)}
-                {!isEmpty(order) ? (
-                    Object.keys(order).map((item) => (
-                        <li>
-                            <button>
-                                <p>{item}</p>
-                                <p>x {order[item].amount}</p>
-                                <p>€ {order[item].price}</p>
-                            </button>
-                        </li>
-                    ))
-                ): "geen bestellingen"}
+                {
+                    //get all orders from bill --> js functie schrijven
+                }
             </ul>
+            <ul>
+                {
+                    // waarom wordt dit niet gedisplayed
+                    restaurantVariables.newOrder.items ?
+                        restaurantVariables.newOrder.items.map(
+                            item => (
+                                <li>
+                                    <p>{item.name}</p>
+                                    <p>{item.price}</p>
+                                </li>
+                            )
+                        ) : <p>lalalala</p>
+                }
+            </ul>
+
+            {/* get total from all orders from bill --> js functie schrijven */}
             <p>totaal</p>
             <button>afrekenen</button>
         </article>

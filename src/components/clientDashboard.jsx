@@ -1,6 +1,6 @@
 import ClientList from "./clientList";
 
-const ClientDashboard = ({ }) => {
+const ClientDashboard = (restaurantVariables, setRestaurantVariables) => {
     return (
         <section className="dashboard clients">
             <h2>Overzicht</h2>
