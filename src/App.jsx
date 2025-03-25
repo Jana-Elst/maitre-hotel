@@ -66,34 +66,34 @@ function App() {
         {
           id: 1,
           tableID: 1,
-          items: {
-            111: {
+          items: [
+            {
               productId: 111,
               amount: 3,
               status: "ordered" //ordered - ready - served
             },
-            112: {
+            {
               productId: 112,
               amount: 3,
               status: "ordered" //ordered - ready - served
             }
-          }
+          ],
         },
         {
           id: 2,
           tableID: 4,
-          items: {
-            111: {
+          items: [
+            {
               productId: 111,
               amount: 3,
               status: "ready" //ordered - ready - served
             },
-            113: {
+            {
               productId: 113,
               amount: 3,
-              status: "served" //ordered - ready - served
+              status: "ready" //ordered - ready - served
             }
-          }
+          ]
         }
       ],
 

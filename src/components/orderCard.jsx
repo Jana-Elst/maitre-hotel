@@ -2,8 +2,7 @@ import { productData } from '../data.js';
 
 const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
     const products = productData().products;
-    const items = Object.values(order.items);
-    const orders = Object.values(restaurantVariables.orders);
+    const items = order.items;
 
     //status order 1 item aanpassen
     //orders --> order --> items --> item
@@ -11,25 +10,25 @@ const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
         console.log(restaurantVariables);
         console.log("item", item)
 
-
-        const tmpResVar = {
+        const tmpResVar2 = {
             ...restaurantVariables,
             orders:
                 restaurantVariables.orders.map(o =>
                     o.id === order.id ? {
                         ...o,
-                        items: {
-                            ...o.items,
-                            [item.productId]: {
-                                ...o.items[item.productId],
-                                status: "ready"
-                            }
-                        }
+                        items:
+                            o.items.map(i =>
+                                i.productId === item.productId ? {
+                                    ...i,
+                                    status: i.status === "ordered" ? "ready" : "ordered"
+                                } : i
+                            )
                     } : o
                 )
-        };
-        console.log(tmpResVar)
-        setRestaurantVariables(tmpResVar)
+        }
+
+        setRestaurantVariables(tmpResVar2);
+        console.log()
     }
 
     return (
