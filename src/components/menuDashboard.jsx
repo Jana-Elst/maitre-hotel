@@ -37,11 +37,10 @@ const MenuDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
                 ...restaurantVariables.orders,
                 restaurantVariables.newOrder
             ],
-            tables: [
-                restaurantVariables.tables.map(table => 
-                    table.id === restaurantVariables.activeState.tableId ? { ...table, status: "unavailable"} : table
-                )
-            ],
+            tables:
+                restaurantVariables.tables.map(table =>
+                    table.id === restaurantVariables.activeState.tableId ? { ...table, status: "unavailable" } : table
+                ),
             newOrder: [],
             activeState: {
                 dashboard: "tables",
@@ -64,7 +63,7 @@ const MenuDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
                     ]
 
         }
-        
+
         console.log(tmpResVars);
         setRestaurantVariables(tmpResVars);
     }
