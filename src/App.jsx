@@ -66,13 +66,34 @@ function App() {
         {
           id: 1,
           tableID: 1,
-          items: [
-            {
-              productId: 1,
+          items: {
+            111: {
+              productId: 111,
               amount: 3,
-              status: "ordered" //ordered - preparing - ready - served
+              status: "ordered" //ordered - ready - served
+            },
+            112: {
+              productId: 112,
+              amount: 3,
+              status: "ordered" //ordered - ready - served
             }
-          ]
+          }
+        },
+        {
+          id: 2,
+          tableID: 4,
+          items: {
+            111: {
+              productId: 111,
+              amount: 3,
+              status: "ready" //ordered - ready - served
+            },
+            113: {
+              productId: 113,
+              amount: 3,
+              status: "served" //ordered - ready - served
+            }
+          }
         }
       ],
 
@@ -96,7 +117,7 @@ function App() {
   return (
     <div className='app' >
       <h1 className="visually-hidden">Restaurant Dashboard</h1>
-      {/* <OrderDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} /> */}
+      <OrderDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
       {/* <ClientDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} /> */}
       {/* <ClientDetail restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} /> */}
       <TableDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
