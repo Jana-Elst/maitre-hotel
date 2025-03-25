@@ -41,31 +41,38 @@ function App() {
   const [restaurantVariables, setRestaurantVariables] = useState(
     {
       tables: [
-        { id: 1, status: "available" }, // Table 1
-        { id: 2, status: "available" }, // Table 2
-        { id: 3, status: "available" }, // Table 3
-        { id: 4, status: "available" }, // Table 4
-        { id: 5, status: "available" }, // Table 5
-        { id: 6, status: "available" }, // Table 6
-        { id: 7, status: "available" }, // Table 7
-        { id: 8, status: "available" }, // Table 8
-        { id: 9, status: "available" }, // Table 9
-        { id: 10, status: "available" }, // Table 10
+        { id: 1, status: "unavailable" },
+        { id: 2, status: "unavailable" },
+        { id: 3, status: "reseravation" },
+        { id: 4, status: "available" },
+        { id: 5, status: "available" },
+        { id: 6, status: "available" },
+        { id: 7, status: "available" },
+        { id: 8, status: "available" },
+        { id: 9, status: "available" },
+        { id: 10, status: "available" }
       ],
 
       bills: [
         {
           id: 1,
-          tableID: 2,
           orders: [1],
-          paid: false
-        }
+          paid: false,
+          tableId: 1
+        },
+        {
+          id: 1,
+          orders: [2],
+          paid: false,
+          tableId: 2
+        },
       ],
+
+      newOrder: [],
 
       orders: [
         {
           id: 1,
-          tableID: 1,
           items: [
             {
               productId: 111,
@@ -81,7 +88,6 @@ function App() {
         },
         {
           id: 2,
-          tableID: 4,
           items: [
             {
               productId: 111,

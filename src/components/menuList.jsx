@@ -1,12 +1,21 @@
-import MenuCard from "./menuCard";
+import { productData } from "../data";
+import MenuCard from "./menuCard"
 
-const MenuList = ({ productData, subCategory, setOrder, order }) => {
+const MenuList = ({ restaurantVariables, setRestaurantVariables }) => {
     return (
-        <ul>
-            {Object.values(productData[subCategory]).map((item) => (
-                <MenuCard key={item.name} productData={item} order={order} setOrder={setOrder} />
-            ))}
-        </ul>
+        <div>
+            {
+                productData.products.map((product) =>
+                    restaurantVariables.activeState.subcategoryId ?
+                        restaurantVariables.activeState.subcategoryId === product.subcategoryId ?
+                            <MenuCard product={product} setRestaurantVariables={setRestaurantVariables} restaurantVariables={restaurantVariables} /> : ""
+                        :
+                        restaurantVariables.activeState.categoryId === product.categoryId ?
+                            <MenuCard product={product} setRestaurantVariables={setRestaurantVariables} restaurantVariables={restaurantVariables} /> : ""
+                )
+
+            }
+        </div>
     );
 };
 

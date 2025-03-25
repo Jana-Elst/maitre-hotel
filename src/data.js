@@ -72,9 +72,9 @@ export const productData = {
         { id: 123, name: 'Kamillethee', price: 3, subcategoryId: 12 },
 
         // Brunch
-        { id: 201, name: 'Cinnamon Roll', price: 3.50, subcategoryId: 20 },
-        { id: 202, name: 'Pancakes', price: 8, subcategoryId: 20 },
-        { id: 203, name: 'Yoghurt met granola', price: 6, subcategoryId: 20 },
+        { id: 201, name: 'Cinnamon Roll', price: 3.50, categoryId: 2 },
+        { id: 202, name: 'Pancakes', price: 8, categoryId: 2 },
+        { id: 203, name: 'Yoghurt met granola', price: 6, categoryId: 2 },
 
         // Gezelschapsspel - Bordspellen
         { id: 311, name: 'Rummikub', value: 4, subcategoryId: 31 },

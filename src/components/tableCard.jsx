@@ -8,6 +8,11 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables }) => {
                     ...restaurantVariables.activeState,
                     dashboard: "menu",
                     tableID: tableId
+                },
+
+                newOrder: {
+                    id: restaurantVariables.orders.length + 1,
+                    items: []
                 }
             })}>
             <article>

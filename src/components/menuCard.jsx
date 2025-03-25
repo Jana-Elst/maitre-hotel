@@ -1,42 +1,38 @@
-const addProductToOrder = (productData, setOrder, order) => {
-    console.log("addProductToOrder");
-    // Create product object
-    const product = {
-        name: productData.name,
-        price: productData.price,
-    };
+const MenuCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
+    const addProductToOrder = () => {
+        console.log("addProductToOrder");
+        console.log(restaurantVariables);
+        // Check if product is already in order
+        const tempResVar = {
+            ...restaurantVariables,
+            newOrder: {
+                ...restaurantVariables.newOrder,
+                items:
+                    // check if there is an item of in the array with the id of the product.
 
-    // Check if product is already in order
-    {
-        if (product.name in order) {
-            setOrder(order => ({
-                ...order,
-                [product.name]: {
-                    amount: order[product.name].amount + 1,
-                    price: product.price,
-                    prepared: "false",
-                }
-            }));
+                    restaurantVariables.newOrder.items.some(item => item.productId === product.id)
+                        ? [(restaurantVariables.newOrder.items.map(item => {
+                            item.productId === product.id
+                                ? { ...item, amount: item.amount + 1 }
+                                : item
+                        }))]
+                        : [
+                            ...restaurantVariables.newOrder.items,
+                            {
+                                productId: product.id,
+                                amount: 1,
+                                status: 'ordered'
+                            }
+                        ]
+            }
         }
-        else {
-            setOrder(order => ({
-                ...order,
-                [product.name]: {
-                    amount: 1,
-                    price: product.price,
-                }
-            }));
-        }
-
-        console.log(order);
+        setRestaurantVariables(tempResVar);
     }
-}
 
-const MenuCard = ({ productData, setOrder, order }) => {
     return (
-        <button onClick={() => addProductToOrder(productData, setOrder, order)}>
-            <h3>{productData.name}</h3>
-            <p>{productData.price}</p>
+        <button onClick={() => addProductToOrder()}>
+            <h3>{product.name}</h3>
+            <p>{product.price}</p>
         </button>
     );
 };
