@@ -103,7 +103,9 @@ function App() {
 
       activeState: {
         dashboard: "tables",
-        tableID: null
+        tableId: null,
+        categoryId: 1,
+        subcategoryId: 11
       }
     }
   );
@@ -121,7 +123,7 @@ function App() {
       {/* <ClientDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} /> */}
       {/* <ClientDetail restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} /> */}
       <TableDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
-      {/* <MenuDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} /> */}
+      <MenuDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
     </div >
   )
 }

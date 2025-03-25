@@ -5,6 +5,7 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables }) => {
             onClick={() => setRestaurantVariables({
                 ...restaurantVariables,
                 activeState: {
+                    ...restaurantVariables.activeState,
                     dashboard: "menu",
                     tableID: tableId
                 }

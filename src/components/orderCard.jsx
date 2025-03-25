@@ -1,7 +1,7 @@
 import { productData } from '../data.js';
 
 const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
-    const products = productData().products;
+    const products = productData.products;
     const items = order.items;
 
     //status order 1 item aanpassen
