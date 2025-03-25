@@ -1,5 +1,4 @@
 const TableCard = ({ table, restaurantVariables, setRestaurantVariables }) => {
-    const tableId = table.id;
     return (
         <button
             onClick={() => setRestaurantVariables({
@@ -7,7 +6,7 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables }) => {
                 activeState: {
                     ...restaurantVariables.activeState,
                     dashboard: "menu",
-                    tableID: tableId
+                    tableId: table.id
                 },
 
                 newOrder: {
@@ -16,7 +15,7 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables }) => {
                 }
             })}>
             <article>
-                <h3>Tafel {tableId}</h3>
+                <h3>Tafel {table.id}</h3>
             </article>
         </button>
     );

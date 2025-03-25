@@ -3,6 +3,8 @@ import { isEmpty } from "../functions";
 import { productData } from "../data";
 
 const MenuDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
+    console.log(restaurantVariables);
+
     const changeCategory = (category) => {
         console.log(category);
         let firstSubcategory;
@@ -23,47 +25,49 @@ const MenuDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
         })
     }
 
-    // const stopOrder = () => {
-    //     console.log("order is afgerond");
-    //     //Send order to kitchen
-    //     const id = Object.keys(orderKitchen).length + 1;
-    //     {
-    //         // !isEmpty(order) ? setOrderKitchen(
-    //         //     {
-    //         //         ...orderKitchen,
-    //         //         [id]: {
-    //         //             table: isActive.id,
-    //         //             order: { ...order }
-    //         //         }
-    //         //     }
-    //         // ) : "";
-    //     }
+    const stopOrder = () => {
+        console.log("order is afgerond");
+        console.log(restaurantVariables.activeState.tableId);
+        //add newOrder to orders
+        //remove newOrder
+        //add order to bill + create one if their is no bill for the table
+        const tmpResVars = {
+            ...restaurantVariables,
+            orders: [
+                ...restaurantVariables.orders,
+                restaurantVariables.newOrder
+            ],
+            tables: [
+                restaurantVariables.tables.map(table => 
+                    table.id === restaurantVariables.activeState.tableId ? { ...table, status: "unavailable"} : table
+                )
+            ],
+            newOrder: [],
+            activeState: {
+                dashboard: "tables",
+                tableId: null,
+                categoryId: 1,
+                subcategoryId: 11
+            },
+            bills:
+                restaurantVariables.bills.some(bill => bill.paid === false && bill.tableId === restaurantVariables.activeState.tableId)
+                    ? restaurantVariables.bills.map(bill =>
+                        [bill.tableId === restaurantVariables.activeState.tableId ? { ...bill, orders: [...bill.orders, restaurantVariables.newOrder.id] } : bill]
+                    )
+                    : [...restaurantVariables.bills,
+                    {
+                        id: restaurantVariables.bills.length + 1,
+                        orders: [restaurantVariables.newOrder.id],
+                        paid: false,
+                        tableId: restaurantVariables.activeState.tableId
+                    }
+                    ]
 
-    //     console.log(orderKitchen);
-
-    //     //Add order to bill table
-    //     {
-    //         !isEmpty(order) ? setClientData(
-    //             {
-    //                 ...clientData,
-    //                 //data toevoegen en checken of client al bestaat.
-    //                 // [isActive.id]: {
-    //                 //     ...order
-    //                 // }
-    //             }
-    //         ) : "";
-    //     }
-
-
-    //     //Reset order
-    //     setOrder({});
-
-    //     //Back to tables
-    //     setIsActive({
-    //         dashboard: "tables",
-    //         id: null,
-    //     });
-    // }
+        }
+        
+        console.log(tmpResVars);
+        setRestaurantVariables(tmpResVars);
+    }
 
     return (
         <section className={`dashboard tables ${restaurantVariables.activeState.dashboard === "menu" ? "" : "hidden"}`}>
