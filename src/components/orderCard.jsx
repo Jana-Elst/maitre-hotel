@@ -7,10 +7,7 @@ const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
     //status order 1 item aanpassen
     //orders --> order --> items --> item
     const changeData = (item) => {
-        console.log(restaurantVariables);
-        console.log("item", item)
-
-        const tmpResVar2 = {
+        const tmpResVar = {
             ...restaurantVariables,
             orders:
                 restaurantVariables.orders.map(o =>
@@ -27,8 +24,19 @@ const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
                 )
         }
 
-        setRestaurantVariables(tmpResVar2);
-        console.log()
+        setRestaurantVariables(tmpResVar);
+    }
+
+    const isDisabled = () => {
+        let isDisabled = false;
+
+        items.forEach(item => {
+            if (item.status === "ordered") {
+                isDisabled = true;
+            }
+        });
+
+        return isDisabled;
     }
 
     return (
@@ -54,7 +62,7 @@ const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
                 })
             }
 
-            < button > Serve</button>
+            <button disabled={isDisabled()}>Serve</button>
         </li >
     );
 };
