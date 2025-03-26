@@ -1,10 +1,9 @@
-const ClientCard = ({ }) => {
+const ClientCard = ({ table }) => {
     return (
-        <article>
-            <h3>Naam tafel</h3>
-            <p>naam klant</p>
+        <button>
+            <h3>Tafel {table.id}</h3>
             <p>prijs</p>
-        </article>
+        </button>
     );
 };
 

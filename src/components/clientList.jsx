@@ -1,9 +1,15 @@
 import ClientCard from "./clientCard";
 
-const ClientList = ({ }) => {
+const ClientList = ({ restaurantVariables, setRestaurantVariables }) => {
     return (
         <ul>
-            <ClientCard client={"lala"} price={3.50}/>
+            {
+                restaurantVariables.tables.map(table =>
+                    table.status !== "available"
+                        ? <ClientCard table = {table} />
+                        : ""
+                )
+            }
         </ul>
     );
 };
