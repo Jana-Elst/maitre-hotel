@@ -3,8 +3,6 @@ import { isEmpty } from "../functions";
 import { productData } from "../data";
 
 const MenuDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
-    console.log(restaurantVariables);
-
     const changeCategory = (category) => {
         console.log(category);
         let firstSubcategory;
@@ -27,7 +25,6 @@ const MenuDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
 
     const stopOrder = () => {
         console.log("order is afgerond");
-        console.log(restaurantVariables.activeState.tableId);
         //add newOrder to orders
         //remove newOrder
         //add order to bill + create one if their is no bill for the table
@@ -51,7 +48,7 @@ const MenuDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
             bills:
                 restaurantVariables.bills.some(bill => bill.paid === false && bill.tableId === restaurantVariables.activeState.tableId)
                     ? restaurantVariables.bills.map(bill =>
-                        [bill.tableId === restaurantVariables.activeState.tableId ? { ...bill, orders: [...bill.orders, restaurantVariables.newOrder.id] } : bill]
+                        bill.tableId === restaurantVariables.activeState.tableId ? { ...bill, orders: [...bill.orders, restaurantVariables.newOrder.id] } : bill
                     )
                     : [...restaurantVariables.bills,
                     {

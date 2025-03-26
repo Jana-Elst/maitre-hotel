@@ -6,10 +6,6 @@ const ordersForKitchen = (restaurantVariables) => {
     const orders = restaurantVariables.orders;
 
     //alle orders waar een item status 'ordered' heeft
-
-    console.log("orders", orders);
-
-
     orders.map(order => {
         let isServed = true;
         const items = Object.values(order.items);

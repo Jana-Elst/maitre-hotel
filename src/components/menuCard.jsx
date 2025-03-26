@@ -1,7 +1,5 @@
 const MenuCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
     const addProductToOrder = () => {
-        console.log("addProductToOrder");
-        console.log(restaurantVariables);
         // Check if product is already in order
         const tempResVar = {
             ...restaurantVariables,
@@ -9,13 +7,15 @@ const MenuCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
                 ...restaurantVariables.newOrder,
                 items:
                     // check if there is an item of in the array with the id of the product.
-
                     restaurantVariables.newOrder.items.some(item => item.productId === product.id)
-                        ? [(restaurantVariables.newOrder.items.map(item => {
-                            item.productId === product.id
-                                ? { ...item, amount: item.amount + 1 }
-                                : item
-                        }))]
+                        ? restaurantVariables.newOrder.items.map(i => 
+                            i.productId === product.id
+                                ? {
+                                    ...i,
+                                    amount: i.amount + 1
+                                }
+                                : i
+                        )
                         : [
                             ...restaurantVariables.newOrder.items,
                             {

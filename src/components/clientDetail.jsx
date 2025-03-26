@@ -1,37 +1,48 @@
-import { isEmpty } from "../functions";
+import { productData, restaurantData } from "../data";
+import { createBill, getTotal } from "../functions"
 
 const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
-    if (restaurantVariables.newOrder.items) {
-        restaurantVariables.newOrder.items.map(item => {
-            console.log(item);
-        });
-    }
+    const products = productData.products;
+    const items = restaurantVariables.newOrder.items;
+    const billItems = createBill(restaurantVariables);
+    let total = getTotal(restaurantVariables);
 
     return (
         <article className={`dashboard clientdetail ${restaurantVariables.activeState.dashboard === "menu" ? "" : "hidden"}`} >
             <h3>Tafel {restaurantVariables.activeState.tableId}</h3>
             <ul>
+
                 {
-                    //get all orders from bill --> js functie schrijven
+                    billItems ?
+                        billItems.map((item) => {
+                            const product = products.find(p => p.id === item.productId);
+                            return (
+                                <li>
+                                    <p>{item.amount} x {product.name}</p>
+                                    <p>{product.price}</p>
+                                </li>
+                            )
+                        }) : ""
                 }
+
             </ul>
             <ul>
                 {
-                    // waarom wordt dit niet gedisplayed
-                    restaurantVariables.newOrder.items ?
-                        restaurantVariables.newOrder.items.map(
-                            item => (
+                    items ?
+                        items.map((item) => {
+                            const product = products.find(p => p.id === item.productId);
+                            return (
                                 <li>
-                                    <p>{item.name}</p>
-                                    <p>{item.price}</p>
+                                    <p>{item.amount} x {product.name}</p>
+                                    <p>{product.price}</p>
                                 </li>
                             )
-                        ) : <p>lalalala</p>
+                        }) : ""
                 }
             </ul>
 
             {/* get total from all orders from bill --> js functie schrijven */}
-            <p>totaal</p>
+            <p>€ {total}</p>
             <button>afrekenen</button>
         </article>
     );
