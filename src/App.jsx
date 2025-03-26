@@ -41,7 +41,7 @@ function App() {
   const [restaurantVariables, setRestaurantVariables] = useState(
     {
       tables: [
-        { id: 1, status: "available" },
+        { id: 1, status: "unavailable" },
         { id: 2, status: "unavailable" },
         { id: 3, status: "reseravation" },
         { id: 4, status: "available" },
@@ -111,7 +111,8 @@ function App() {
         dashboard: "tables",
         tableId: null,
         categoryId: 1,
-        subcategoryId: 11
+        subcategoryId: 11,
+        totalTableActive: 0
       }
     }
   );

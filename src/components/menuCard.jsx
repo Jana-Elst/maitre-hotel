@@ -1,3 +1,5 @@
+import { createBill, getTotal } from "../functions"
+
 const MenuCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
     const addProductToOrder = () => {
         // Check if product is already in order
@@ -8,7 +10,7 @@ const MenuCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
                 items:
                     // check if there is an item of in the array with the id of the product.
                     restaurantVariables.newOrder.items.some(item => item.productId === product.id)
-                        ? restaurantVariables.newOrder.items.map(i => 
+                        ? restaurantVariables.newOrder.items.map(i =>
                             i.productId === product.id
                                 ? {
                                     ...i,
@@ -24,9 +26,19 @@ const MenuCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
                                 status: 'ordered'
                             }
                         ]
-            }
+            },
         }
-        setRestaurantVariables(tempResVar);
+
+        let total = getTotal(tempResVar, tempResVar.activeState.tableId);
+        setRestaurantVariables(
+            {
+                ...tempResVar,
+                activeState: {
+                    ...tempResVar.activeState,
+                    totalTableActive: total
+                }
+            }
+        );
     }
 
     return (

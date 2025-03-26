@@ -1,11 +1,10 @@
-import { productData, restaurantData } from "../data";
+import { productData } from "../data";
 import { createBill, getTotal } from "../functions"
 
 const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
     const products = productData.products;
     const items = restaurantVariables.newOrder.items;
-    const billItems = createBill(restaurantVariables);
-    let total = getTotal(restaurantVariables);
+    const billItems = createBill(restaurantVariables, restaurantVariables.activeState.tableId);
 
     return (
         <article className={`dashboard clientdetail ${restaurantVariables.activeState.dashboard === "menu" ? "" : "hidden"}`} >
@@ -42,7 +41,7 @@ const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
             </ul>
 
             {/* get total from all orders from bill --> js functie schrijven */}
-            <p>€ {total}</p>
+            <p>€ {restaurantVariables.activeState.totalTableActive}</p>
             <button>afrekenen</button>
         </article>
     );

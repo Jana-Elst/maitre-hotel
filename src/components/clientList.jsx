@@ -5,8 +5,9 @@ const ClientList = ({ restaurantVariables, setRestaurantVariables }) => {
         <ul>
             {
                 restaurantVariables.tables.map(table =>
+                    // {console.log(table.id)}
                     table.status !== "available"
-                        ? <ClientCard table = {table} />
+                        ? <ClientCard table={table} restaurantVariables={restaurantVariables} />
                         : ""
                 )
             }
