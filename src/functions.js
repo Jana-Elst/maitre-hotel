@@ -173,6 +173,31 @@ const deleteReservation = (restaurantVariables) => {
     return tmpResVar
 }
 
+const handlePay = (restaurantVariables) => {
+    const tmpResVar = {
+        ...restaurantVariables,
+
+        tables:
+            restaurantVariables.tables.map(table =>
+                table.id === restaurantVariables.activeState.tableId ? { ...table, status: "available" } : table
+            ),
+
+        activeState: {
+            dashboard: "tables",
+            tableId: null,
+            categoryId: 1,
+            subcategoryId: 11
+        },
+
+        bills:
+            restaurantVariables.bills.map(bill =>
+                restaurantVariables.activeState.tableId === bill.tableId ? { ...bill, paid: true } : bill
+            )
+    }
+
+    return tmpResVar
+}
+
 const tableHasGame = (restaurantVariables, game) => {
     const table = restaurantVariables.activeState.tableId;
     if (table) {
@@ -196,3 +221,4 @@ export { ordersForKitchen };
 export { stopOrder };
 export { deleteReservation };
 export { tableHasGame };
+export { handlePay };

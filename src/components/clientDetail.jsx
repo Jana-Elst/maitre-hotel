@@ -1,15 +1,25 @@
 import { productData } from "../data";
-import { createBill, deleteReservation, tableHasGame } from "../functions"
+import { createBill, deleteReservation, tableHasGame, handlePay } from "../functions"
 
 import {
     Card,
     CardContent,
-    CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 
 const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
@@ -22,7 +32,7 @@ const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
             <CardHeader>
                 <CardTitle>Tafel {restaurantVariables.activeState.tableId}</CardTitle>
             </CardHeader>
-            
+
             <CardContent className="flex flex-col gap-5 overflow-scroll">
 
                 {/* games linked to table */}
@@ -81,7 +91,21 @@ const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
             {/* Button */}
             {restaurantVariables.activeState.totalTableActive
                 ? <CardFooter>
-                    <Button className="w-full">Afrekenen</Button>
+                    <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                            <Button className="w-full">Afrekenen</Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                            <AlertDialogHeader>
+                                <AlertDialogTitle>€ {restaurantVariables.activeState.totalTableActive.toFixed(2)}</AlertDialogTitle>
+                                <AlertDialogDescription>fjkdljfdsklmd</AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                                <AlertDialogCancel>Annuleer</AlertDialogCancel>
+                                <AlertDialogAction onClick={() => setRestaurantVariables(handlePay(restaurantVariables))}>Afrekenen</AlertDialogAction>
+                            </AlertDialogFooter>
+                        </AlertDialogContent>
+                    </AlertDialog>
                 </CardFooter>
                 : restaurantVariables.tables.some(t => t.id === restaurantVariables.activeState.tableId && t.status === 'reservation')
                     ? <CardFooter>
