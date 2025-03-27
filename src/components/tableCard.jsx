@@ -1,4 +1,4 @@
-import { createBill, getTotal } from "../functions"
+import { changeCategory, createBill, getTotal } from "../functions"
 import { useState } from 'react'
 
 
@@ -18,7 +18,7 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen 
 
     const handleClick = () => {
         let total = getTotal(restaurantVariables, table.id);
-        let tmpResVar;
+        let tmpResVar = changeCategory(restaurantVariables, 1, 11);
         screen === "dashboardScreen"
             ? tmpResVar = {
                 ...restaurantVariables,

@@ -6,8 +6,8 @@ const MenuList = ({ restaurantVariables, setRestaurantVariables }) => {
         <div key={`${restaurantVariables.activeState.categoryId}-${restaurantVariables.activeState.subcategoryId}`} className="grid grid-cols-(--menuItems) gap-4">
             {
                 productData.products.map((product) =>
-                    restaurantVariables.activeState.subcategoryId ?
-                        restaurantVariables.activeState.subcategoryId === product.subcategoryId ?
+                    productData.subcategories.some(subcategory => subcategory.id === restaurantVariables.activeState.subcategoryId)
+                        ? restaurantVariables.activeState.subcategoryId === product.subcategoryId ?
                             <MenuCard product={product} setRestaurantVariables={setRestaurantVariables} restaurantVariables={restaurantVariables} /> : ""
                         :
                         restaurantVariables.activeState.categoryId === product.categoryId ?

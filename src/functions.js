@@ -92,10 +92,66 @@ const changeCategory = (restaurantVariables, category, subcategory) => {
 const ordersForKitchen = (restaurantVariables) => {
     return restaurantVariables.orders.map(order =>
         order.items.some(item => item.status !== "served")
-        ? order
-        : ""
+            ? order
+            : ""
     );
 }
+
+const stopOrder = (restaurantVariables) => {
+    console.log("order is afgerond");
+    //add newOrder to orders
+    //remove newOrder
+    //add order to bill + create one if their is no bill for the table
+    let tmpResVar;
+
+    restaurantVariables.newOrder.items.length > 0
+        ? tmpResVar = {
+            ...restaurantVariables,
+            orders: [
+                ...restaurantVariables.orders,
+                restaurantVariables.newOrder
+            ],
+
+            tables:
+                restaurantVariables.tables.map(table =>
+                    table.id === restaurantVariables.activeState.tableId ? { ...table, status: "unavailable" } : table
+                ),
+
+            newOrder: [],
+
+            activeState: {
+                dashboard: "tables",
+                tableId: null,
+                categoryId: 1,
+                subcategoryId: 11
+            },
+
+            bills:
+                restaurantVariables.bills.some(bill => bill.paid === false && bill.tableId === restaurantVariables.activeState.tableId)
+                    ? restaurantVariables.bills.map(bill =>
+                        bill.tableId === restaurantVariables.activeState.tableId ? { ...bill, orders: [...bill.orders, restaurantVariables.newOrder.id] } : bill)
+                    : [...restaurantVariables.bills,
+                    {
+                        id: restaurantVariables.bills.length + 1,
+                        orders: [restaurantVariables.newOrder.id],
+                        paid: false,
+                        tableId: restaurantVariables.activeState.tableId
+                    }]
+
+        }
+        : tmpResVar = {
+            ...restaurantVariables,
+            activeState: {
+                dashboard: "tables",
+                tableId: null,
+                categoryId: 1,
+                subcategoryId: 11
+            }
+        }
+
+    return (tmpResVar);
+}
+
 
 /* ---------------- Change setStates functions ---------------- */
 export { isEmpty };
@@ -104,4 +160,6 @@ export { createBill };
 export { getTotal };
 
 export { changeCategory };
+
 export { ordersForKitchen };
+export { stopOrder };
