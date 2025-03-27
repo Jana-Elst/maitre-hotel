@@ -1,5 +1,16 @@
 import { productData } from '../data.js';
 
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Button } from "@/components/ui/button"
+
 const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
     const products = productData.products;
     const items = order.items;
@@ -40,30 +51,45 @@ const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
     }
 
     return (
-        <li  >
-            <h3>#{order.id}</h3>
-            <p>tafel {order.table}</p>
-            {
-                items.map((item) => {
-                    const product = products.find(p => p.id === item.productId);
-                    return (
-                        <div key={`${order.id}-${item.productId}`}>
-                            <input
-                                type="checkbox"
-                                id={item.productId}
-                                name={item.productId}
-                                checked={item.status === "ordered" ? false : true}
-                                onChange={e => changeData(item)
-                                }
-                            />
-                            <label htmlFor={item.productId}>{item.amount} x {product.name}</label>
-                        </div>
-                    )
-                })
-            }
+        <li>
+            <Card className="min-w-55 h-full border-zinc-950">
+                <CardHeader className="flex justify-between">
+                    <CardTitle>#{order.id}</CardTitle>
+                    <CardDescription>Tafel {order.table}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    {
+                        items.map((item) => {
+                            const product = products.find(p => p.id === item.productId);
+                            return (
+                                <div key={`${order.id}-${item.productId}`} className="space-x-2">
+                                    <Checkbox
+                                        id={`${order.id}-${item.productId}`}
+                                        name={`${order.id}-${item.productId}`}
+                                        checked={item.status === "ordered" ? false : true}
+                                        onCheckedChange={e => changeData(item)
+                                        }
+                                    />
+                                    <label htmlFor={`${order.id}-${item.productId}`}>{item.amount} x {product.name}</label>
+                                </div>
+                            )
+                        })
+                    }
 
-            <button disabled={isDisabled()}>Serve</button>
-        </li >
+                </CardContent>
+                <CardFooter className="flex justify-stretch w-full">
+                    <Button
+                        onClick={() => setRestaurantVariables({
+                            ...restaurantVariables,
+                            orders: [
+                                restaurantVariables.orders.map(o => o.id === order.id ? { ...o, status: served } : o)
+                            ]
+                        })}
+                        className="w-full" disabled={isDisabled()}
+                    >Serve</Button>
+                </CardFooter>
+            </Card>
+        </li>
     );
 };
 

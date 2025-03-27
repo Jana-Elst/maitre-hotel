@@ -2,6 +2,18 @@ import MenuList from "./menuList";
 import { isEmpty } from "../functions";
 import { productData } from "../data";
 
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+
 const MenuDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
     const changeCategory = (category) => {
         console.log(category);
@@ -66,44 +78,48 @@ const MenuDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
     }
 
     return (
-        <section className={`dashboard tables ${restaurantVariables.activeState.dashboard === "menu" ? "" : "hidden"}`}>
-            <h2>Menu</h2>
+        <Card className="h-full grid grid-rows-(--clientDetail)">
+            <CardHeader>
+                <p></p>
+                {/* navigatie != onderdelen menu */}
+                <Tabs>
+                    <TabsList key='categories' className='min-w-full'>
+                        {
+                            productData.categories.map((category) => (
+                                <TabsTrigger value={category.name} onClick={() => changeCategory(category)}>{category.name}</TabsTrigger>
+                            ))
+                        }
+                    </TabsList>
 
-            {/* navigatie != onderdelen menu */}
-            <ul>
-                {
-                    productData.categories.map((category) => (
-                        <li key={category.id}>
-                            <button key={category.id} onClick={() => changeCategory(category)}> {category.name}</button>
-                        </li>
-                    ))
-                }
-            </ul>
+                    {/* subnavigatie */}
+                    <TabsList key='subcategories' className='min-w-full'>
+                        {
+                            productData.subcategories.map((subcategory) => (
+                                subcategory.categoryId === restaurantVariables.activeState.categoryId ?
+                                    <TabsTrigger
+                                        value={subcategory.id}
+                                        onClick={() => setRestaurantVariables({
+                                            ...restaurantVariables,
+                                            activeState: {
+                                                ...restaurantVariables.activeState,
+                                                subcategoryId: subcategory.id
+                                            }
+                                        })}
+                                    >{subcategory.name}</TabsTrigger> : ""
+                            ))
+                        }
+                    </TabsList>
+                </Tabs>            
+            </CardHeader>
 
-            {/* subnavigatie */}
-            <ul>
-                {
-                    productData.subcategories.map((subcategory) => (
-                        subcategory.categoryId === restaurantVariables.activeState.categoryId ?
-                            <button
-                                key={subcategory.id}
-                                onClick={() => setRestaurantVariables({
-                                    ...restaurantVariables,
-                                    activeState: {
-                                        ...restaurantVariables.activeState,
-                                        subcategoryId: subcategory.id
-                                    }
-                                })}
-                            >{subcategory.name}</button> : ""
-                    ))
-                }
-            </ul>
+            <CardContent>
+                <MenuList restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
+            </CardContent>
 
-            {/* menu items */}
-            <MenuList restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
-
-            <button onClick={() => stopOrder()}>bestelling afronden</button>
-        </section >
+            <CardFooter>
+                <Button className="w-full" onClick={() => stopOrder()}>Bestelling afronden</Button>
+            </CardFooter>
+        </Card >
     );
 };
 

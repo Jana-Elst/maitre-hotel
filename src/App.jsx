@@ -2,11 +2,10 @@ import { useState, useEffect } from 'react'
 import './App.css'
 
 //different elements
-import ClientDashboard from './components/clientDashboard';
 import OrderDashboard from './components/orderDashboard';
 import TableDashboard from './components/tableDashboard';
-import MenuDashboard from './components/menuDashboard';
-import ClientDetail from './components/clientDetail';
+import DetailDashboard from './components/detailDashboard.jsx';
+
 
 //imported data
 import { productData, restaurantData } from './data.js';
@@ -43,7 +42,7 @@ function App() {
       tables: [
         { id: 1, status: "unavailable" },
         { id: 2, status: "unavailable" },
-        { id: 3, status: "reseravation" },
+        { id: 3, status: "reservation" },
         { id: 4, status: "available" },
         { id: 5, status: "available" },
         { id: 6, status: "available" },
@@ -124,13 +123,11 @@ function App() {
   // }, []);
 
   return (
-    <div className='app' >
+    <div className='app p-3 grid grid-rows-[max-content] gap-3 h-dvh' >
       <h1 className="visually-hidden">Restaurant Dashboard</h1>
       <OrderDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
-      <ClientDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
-      <ClientDetail restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
       <TableDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
-      <MenuDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
+      <DetailDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
     </div >
   )
 }

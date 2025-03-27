@@ -1,11 +1,21 @@
 import { createBill, getTotal } from "../functions"
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
 
 const ClientCard = ({ table, restaurantVariables }) => {
     const total = getTotal(restaurantVariables, table.id);
     return (
         <button>
-            <h3>Tafel {table.id}</h3>
-            <p>€ {total}</p>
+            <Card>
+                <CardTitle>Tafel {table.id}</CardTitle>
+                <CardContent>€ {total}</CardContent>
+            </Card>
         </button>
     );
 };

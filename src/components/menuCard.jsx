@@ -1,4 +1,13 @@
 import { createBill, getTotal } from "../functions"
+import { Button } from "@/components/ui/button"
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
 
 const MenuCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
     const addProductToOrder = () => {
@@ -42,10 +51,10 @@ const MenuCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
     }
 
     return (
-        <button onClick={() => addProductToOrder()}>
+        <Button className="min-w-40 min-h-25 flex flex-col" variant="outline" onClick={() => addProductToOrder()}>
             <h3>{product.name}</h3>
-            <p>{product.price}</p>
-        </button>
+            <p>€ {product.price.toFixed(2)}</p>
+        </Button>
     );
 };
 

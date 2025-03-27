@@ -1,8 +1,5 @@
 :root {
   --color-black: #191A23;
-  --color-grey: #F3F3F3;
-  --color-white: #ffffff;
-
   --color-text: var(--color-black);
 
   /* font family */
@@ -40,23 +37,12 @@
   --sp-xl-2xl: clamp(3rem, 2.4783rem + 2.6087vw, 4.5rem);
   --sp-2xl-3xl: clamp(4rem, 3.0435rem + 4.7826vw, 6.75rem);
 
-  /* Custom pairs */
-  --sp-s-l: clamp(1rem, 0.5652rem + 2.1739vw, 2.25rem);
 
-  --max-width-page: 75rem;
-
-  /* Border Radius */
-  --border-radius: 8px;
-  --border-radius-small: 4px;
-  --border-radius-large: 12px;
-
-  /* Shadows *//*echt heeeeeel lelijke schaduw*/
-  --box-shadow-light: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  --box-shadow-dark: 0px 6px 12px rgba(0, 0, 0, 0.2);
-
-  /* Transitions */
-  --transition-duration: 0.3s;
-  --transition-ease: ease-in-out;
+  /*custom grid*/
+  --detailDashboard: max-content 1fr;
+  --detailTableOrder: 10rem 5rem;
+  --menuItems: repeat(auto-fit, minmax(8rem, 1fr));
+  --clientDetail: min-content 1fr min-content;
 }
 
 
@@ -94,50 +80,6 @@ body {
   font-size: var(--fs-0);
   line-height: 1.5;
   color: var(--color-text);
-}
-
-.app {
-  height: 100dvh;
-  padding: var(--sp-s);
-
-  display: grid;
-  grid-template-columns: 25vw 1fr;
-  grid-template-rows: 20vh 1fr;
-  gap: var(--sp-xs);
-
-  grid-template-areas:
-    "orders orders"
-    "clients tables";
-}
-
-.dashboard {
-  background-color: var(--color-grey);
-  border-radius: var(--border-radius);
-}
-
-.clients {
-  grid-area: clients;
-}
-
-.tables {
-  grid-area: tables;
-}
-
-.orders {
-  grid-area: orders;
-}
-
-.clientdetail {
-  grid-area: clients;
-}
-
-h2 {
-  font-weight: bold;
-}
-
-.orders__list {
-  display: flex;
-  gap: var(--sp-xs);
 }
 
 /* ----------------------------------------------- */

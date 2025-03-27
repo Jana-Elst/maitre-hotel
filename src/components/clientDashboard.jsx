@@ -1,13 +1,23 @@
 import ClientList from "./clientList";
 
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
 const ClientDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
     return (
-        <section className="dashboard clients">
+        <Card className="clients">
             <h2>Overzicht</h2>
             <ClientList restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
-            <button>reservering</button>
-            <button>gezelschapsspel</button>
-        </section>
+            <Button>Reserveren</Button>
+            <Button variant="outline">gezelschapsspel</Button>
+        </Card>
     );
 };
 

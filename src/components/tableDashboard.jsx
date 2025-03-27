@@ -1,18 +1,28 @@
 
 import TableCard from './tableCard';
 
-const TableDashboard = ({ restaurantVariables,  setRestaurantVariables }) => {
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+
+
+const TableDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
     const tables = restaurantVariables.tables;
     return (
-        <section className={`dashboard tables ${restaurantVariables.activeState.dashboard === "tables" ? "" : "hidden"}`}>
-            <ul>
-                {tables.map((table) => (
-                    <li key = {table.id}>
-                        <TableCard table={table} restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
-                    </li>
-                ))}
-            </ul>
-        </section>
+        <Card className={`dashboard tables ${restaurantVariables.activeState.dashboard === "tables" ? "" : "hidden"} self-stretch justify-center content-center`}>
+            <CardContent>
+                <ul className='flex gap-4 flex-wrap justify-center content-center'>
+                    {tables.map((table) => (
+                        <TableCard key={table.id} table={table} restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
+                    ))}
+                </ul>
+            </CardContent>
+        </Card>
     );
 };
 

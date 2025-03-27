@@ -62,19 +62,19 @@ export const productData = {
 
     products: [
         // Dranken - Koffie
-        { id: 111, name: 'Espresso', price: 3, subcategoryId: 11 },
+        { id: 111, name: 'Espresso', price: 3.00, subcategoryId: 11 },
         { id: 112, name: 'Latte', price: 4.30, subcategoryId: 11 },
         { id: 113, name: 'Cappuccino', price: 4.30, subcategoryId: 11 },
 
         // Dranken - Thee
         { id: 121, name: 'Gemberthee', price: 4.50, subcategoryId: 12 },
-        { id: 122, name: 'Muntthee', price: 4, subcategoryId: 12 },
-        { id: 123, name: 'Kamillethee', price: 3, subcategoryId: 12 },
+        { id: 122, name: 'Muntthee', price: 4.00, subcategoryId: 12 },
+        { id: 123, name: 'Kamillethee', price: 3.00, subcategoryId: 12 },
 
         // Brunch
         { id: 201, name: 'Cinnamon Roll', price: 3.50, categoryId: 2 },
-        { id: 202, name: 'Pancakes', price: 8, categoryId: 2 },
-        { id: 203, name: 'Yoghurt met granola', price: 6, categoryId: 2 },
+        { id: 202, name: 'Pancakes', price: 8.00, categoryId: 2 },
+        { id: 203, name: 'Yoghurt met granola', price: 6.00, categoryId: 2 },
 
         // Gezelschapsspel - Bordspellen
         { id: 311, name: 'Rummikub', value: 4, subcategoryId: 31 },
