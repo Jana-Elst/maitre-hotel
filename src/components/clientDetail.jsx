@@ -1,5 +1,5 @@
 import { productData } from "../data";
-import { createBill, deleteReservation, tableHasGame, handlePay } from "../functions"
+import { createBill, deleteReservation, tableHasGame, handlePay, removeProductFromOrder } from "../functions"
 
 import {
     Card,
@@ -40,7 +40,7 @@ const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
                     {
                         restaurantVariables.games.map(game =>
                             tableHasGame(restaurantVariables, game)
-                                ? <li>{productData.products.filter(product => game.gameId === product.id).map(product => product.name)}</li>
+                                ? <li key={`${game.gameId}`}>{productData.products.filter(product => game.gameId === product.id).map(product => product.name)}</li>
                                 : ""
                         )
                     }
@@ -53,7 +53,7 @@ const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
                             billItems.map((item) => {
                                 const product = products.find(p => p.id === item.productId);
                                 return (
-                                    <li className="grid grid-cols-(--detailTableOrder)">
+                                    <li key={product.id} className="grid grid-cols-(--detailTableOrder) hover:text-zinc-300" onClick={() => setRestaurantVariables(removeProductFromOrder(restaurantVariables, item))}>
                                         <p>{item.amount} x {product.name}</p>
                                         <p>€ {product.price.toFixed(2)}</p>
                                     </li>
@@ -69,7 +69,7 @@ const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
                             items.map((item) => {
                                 const product = products.find(p => p.id === item.productId);
                                 return (
-                                    <li className="grid grid-cols-(--detailTableOrder)">
+                                    <li key={product.id} className="grid grid-cols-(--detailTableOrder) hover:text-zinc-300" onClick = {() => setRestaurantVariables(removeProductFromOrder(restaurantVariables, item))}>
                                         <p>{item.amount} x {product.name}</p>
                                         <p>€ {product.price.toFixed(2)}</p>
                                     </li>

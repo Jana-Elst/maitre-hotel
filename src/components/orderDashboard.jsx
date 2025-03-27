@@ -11,6 +11,7 @@ import {
 
 
 const orderDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
+    console.log('hier kijken!!!',restaurantVariables.orders);
     return (
         <Card className="dashboard orders h-[33vh] overflow-hidden">
             <CardHeader>

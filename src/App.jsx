@@ -71,7 +71,21 @@ function App() {
               status: "ready" //ordered - ready - served
             }
           ]
-        }
+        }, {
+          id: 3,
+          items: [
+            {
+              productId: 111,
+              amount: 3,
+              status: "served" //ordered - ready - served
+            },
+            {
+              productId: 112,
+              amount: 3,
+              status: "served" //ordered - ready - served
+            }
+          ],
+        },
       ],
 
       games: [

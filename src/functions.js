@@ -83,7 +83,6 @@ const changeCategory = (restaurantVariables, category, subcategory) => {
         }
     }
 
-    console.log(tmpResVar);
     return tmpResVar;
 }
 
@@ -93,7 +92,7 @@ const ordersForKitchen = (restaurantVariables) => {
     return restaurantVariables.orders.map(order =>
         order.items.some(item => item.status !== "served")
             ? order
-            : ""
+            : []
     );
 }
 
@@ -101,6 +100,7 @@ const stopOrder = (restaurantVariables) => {
     //add newOrder to orders
     //remove newOrder
     //add order to bill + create one if their is no bill for the table
+    console.log(restaurantVariables);
     let tmpResVar;
 
     restaurantVariables.newOrder.items.length > 0
@@ -148,6 +148,7 @@ const stopOrder = (restaurantVariables) => {
             }
         }
 
+    console.log(tmpResVar);
     return (tmpResVar);
 }
 
@@ -174,11 +175,13 @@ const deleteReservation = (restaurantVariables) => {
 }
 
 const handlePay = (restaurantVariables) => {
-    const tmpResVar = {
-        ...restaurantVariables,
+    const tmpResVar1 = stopOrder(restaurantVariables);
+
+    const tmpResVar2 = {
+        ...tmpResVar1,
 
         tables:
-            restaurantVariables.tables.map(table =>
+            tmpResVar1.tables.map(table =>
                 table.id === restaurantVariables.activeState.tableId ? { ...table, status: "available" } : table
             ),
 
@@ -190,12 +193,12 @@ const handlePay = (restaurantVariables) => {
         },
 
         bills:
-            restaurantVariables.bills.map(bill =>
+            tmpResVar1.bills.map(bill =>
                 restaurantVariables.activeState.tableId === bill.tableId ? { ...bill, paid: true } : bill
             ),
 
         games:
-            restaurantVariables.games.map(game =>
+            tmpResVar1.games.map(game =>
                 game.tableIds.includes(restaurantVariables.activeState.tableId)
                     ? {
                         ...game,
@@ -204,7 +207,7 @@ const handlePay = (restaurantVariables) => {
                     : game)
     }
 
-    return tmpResVar
+    return tmpResVar2
 }
 
 const tableHasGame = (restaurantVariables, game) => {
@@ -215,6 +218,49 @@ const tableHasGame = (restaurantVariables, game) => {
         }
     }
     return false;
+}
+
+const removeProductFromOrder = (restaurantVariables, itm) => {
+    // Check if product is already in order
+    let tempResVar = {
+        ...restaurantVariables,
+        newOrder: {
+            ...restaurantVariables.newOrder,
+            items:
+                // check if there is an item of in the array with the id of the product.
+                restaurantVariables.newOrder.items.some(item => item.productId === itm.productId)
+                    ? restaurantVariables.newOrder.items.map(i =>
+                        i.productId === itm.productId
+                            ? {
+                                ...i,
+                                amount: i.amount - 1,
+                                status: i.amount-1 <= 0 ? 'served' : i.status
+                            }
+                            : i
+                    )
+                    : [
+                        ...restaurantVariables.newOrder.items,
+                        {
+                            productId: itm.productId,
+                            amount: -1,
+                            status: 'served'
+                        }
+                    ]
+        },
+    }
+
+    let total = getTotal(tempResVar, restaurantVariables.activeState.tableId);
+    tempResVar = (
+        {
+            ...tempResVar,
+            activeState: {
+                ...tempResVar.activeState,
+                totalTableActive: total
+            }
+        }
+    );
+
+    return tempResVar
 }
 
 
@@ -231,3 +277,4 @@ export { stopOrder };
 export { deleteReservation };
 export { tableHasGame };
 export { handlePay };
+export {removeProductFromOrder};
