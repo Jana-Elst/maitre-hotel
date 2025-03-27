@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button"
 const TableDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
     const tables = restaurantVariables.tables;
     return (
-        <Card className={`dashboard tables ${restaurantVariables.activeState.dashboard === "tables" ? "" : "hidden"} grid grid-rows-(--tableDashboard) justify-center items-center`}>
+        <Card className={`dashboard tables grid grid-rows-(--tableDashboard) justify-center items-center ${restaurantVariables.activeState.dashboard === "tables" ? "" : "hidden"}`}>
             <CardContent>
                 <ul className='flex gap-4 flex-wrap justify-center'>
                     {tables.map((table) => (
