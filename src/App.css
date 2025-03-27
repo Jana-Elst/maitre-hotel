@@ -60,12 +60,6 @@ html {
   box-sizing: inherit;
 }
 
-img {
-  max-inline-size: 100%;
-  block-size: auto;
-  display: block;
-}
-
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -75,13 +69,6 @@ img {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
-}
-
-body {
-  font-family: var(--font-family);
-  font-size: var(--fs-0);
-  line-height: 1.5;
-  color: var(--color-text);
 }
 
 /* ----------------------------------------------- */

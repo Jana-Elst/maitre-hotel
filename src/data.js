@@ -86,5 +86,3 @@ export const productData = {
         { id: 321, name: 'Uno', value: 4, subcategoryId: 32 }
     ]
 }
-
-// export { productData };

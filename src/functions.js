@@ -9,8 +9,6 @@ const isEmpty = (object) => {
     return true;
 }
 
-
-
 const createBill = (restaurantVariables, tableId) => {
     if (tableId) {
         //voor welke tafel moet er een rekening gemaakt worden?
@@ -62,11 +60,8 @@ const getTotal = (restaurantVariables, tableId) => {
         });
     }
 
-    console.log('tableId', tableId);
-    console.log('bill', tableId, bill);
     let total = 0;
     if (bill) {
-        console.log('bill',tableId, bill.flat(Infinity));
         bill.flat(Infinity).forEach(item => {
             const product = productData.products.find(p => p.id === item.productId);
             total += product.price * item.amount;
