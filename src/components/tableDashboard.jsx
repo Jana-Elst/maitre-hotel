@@ -25,6 +25,12 @@ import { changeCategory } from '../functions';
 const TableDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
     return (
         <Card className={`dashboard tables grid grid-rows-(--tableDashboard) justify-center items-center ${restaurantVariables.activeState.dashboard === "tables" ? "" : "hidden"}`}>
+            <CardHeader>
+                <CardTitle>
+                    Table overview
+                </CardTitle>
+            </CardHeader>
+
             <CardContent>
                 <TableList setRestaurantVariables={setRestaurantVariables} restaurantVariables={restaurantVariables} screen={"dashboardScreen"} />
             </CardContent>

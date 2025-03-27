@@ -87,8 +87,21 @@ const changeCategory = (restaurantVariables, category, subcategory) => {
     return tmpResVar;
 }
 
+/* ---------------- Other functions ---------------- */
+//alle orders waar een item status 'ordered' heeft
+const ordersForKitchen = (restaurantVariables) => {
+    return restaurantVariables.orders.map(order =>
+        order.items.some(item => item.status !== "served")
+        ? order
+        : ""
+    );
+}
+
 /* ---------------- Change setStates functions ---------------- */
-export { createBill };
 export { isEmpty };
+
+export { createBill };
 export { getTotal };
+
 export { changeCategory };
+export { ordersForKitchen };
