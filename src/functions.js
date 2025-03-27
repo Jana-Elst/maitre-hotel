@@ -9,6 +9,7 @@ const isEmpty = (object) => {
     return true;
 }
 
+/* ---------------- functies om rekening te maken ---------------- */
 const createBill = (restaurantVariables, tableId) => {
     if (tableId) {
         //voor welke tafel moet er een rekening gemaakt worden?
@@ -71,6 +72,23 @@ const getTotal = (restaurantVariables, tableId) => {
     return total
 }
 
+/* ---------------- Change setStates functions ---------------- */
+const changeCategory = (restaurantVariables, category, subcategory) => {
+    const tmpResVar = {
+        ...restaurantVariables,
+        activeState: {
+            ...restaurantVariables.activeState,
+            categoryId: category,
+            subcategoryId: subcategory
+        }
+    }
+
+    console.log(tmpResVar);
+    return tmpResVar;
+}
+
+/* ---------------- Change setStates functions ---------------- */
 export { createBill };
 export { isEmpty };
 export { getTotal };
+export { changeCategory };
