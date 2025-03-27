@@ -32,10 +32,10 @@ const ordersForKitchen = (restaurantVariables) => {
     return ordersKitchen;
 }
 
-const ClientDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
+const orderDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
     const orders = ordersForKitchen(restaurantVariables);
     return (
-        <Card className="dashboard orders overflow-scroll">
+        <Card className="dashboard orders h-[33vh] overflow-hidden">
 
             <CardHeader className="text-center visually-hidden">
                 <CardTitle>Orders</CardTitle>
@@ -43,18 +43,18 @@ const ClientDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
 
             <CardContent>
                 {!isEmpty(orders) ? (
-                    <ul className="orders__list flex flex-row space-x-4">
+                    <ul className="orders__list flex flex-row space-x-4 h-full">
                         {
                             orders.map((order) => (
                                 <OrderCard key={order.id} order={order} setRestaurantVariables={setRestaurantVariables} restaurantVariables={restaurantVariables} />
                             ))
                         }
                     </ul>
-                ) : "<p>alle orders zijn verwerkt<p>"}
+                ) : (<p>alle orders zijn verwerkt</p>)}
             </CardContent>
 
         </Card>
     );
 };
 
-export default ClientDashboard;
+export default orderDashboard;

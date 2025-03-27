@@ -43,6 +43,8 @@
   --detailTableOrder: 10rem 5rem;
   --menuItems: repeat(auto-fit, minmax(8rem, 1fr));
   --clientDetail: min-content 1fr min-content;
+  --tableDashboard: 1fr min-content;
+  --tableDashBoardBtns: 1fr max-content;
 }
 
 

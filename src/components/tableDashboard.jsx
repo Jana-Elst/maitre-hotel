@@ -9,19 +9,24 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 
 
 const TableDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
     const tables = restaurantVariables.tables;
     return (
-        <Card className={`dashboard tables ${restaurantVariables.activeState.dashboard === "tables" ? "" : "hidden"} self-stretch justify-center content-center`}>
+        <Card className={`dashboard tables ${restaurantVariables.activeState.dashboard === "tables" ? "" : "hidden"} grid grid-rows-(--tableDashboard) justify-center items-center`}>
             <CardContent>
-                <ul className='flex gap-4 flex-wrap justify-center content-center'>
+                <ul className='flex gap-4 flex-wrap justify-center'>
                     {tables.map((table) => (
                         <TableCard key={table.id} table={table} restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
                     ))}
                 </ul>
             </CardContent>
+            <CardFooter className="gap-4 grid grid-cols-(--tableDashBoardBtns)">
+                <Button>Reserveren</Button>
+                <Button variant="outline">Gezelschapsspelletjes</Button>
+            </CardFooter>
         </Card>
     );
 };

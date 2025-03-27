@@ -50,46 +50,55 @@ const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
         return isDisabled;
     }
 
-    return (
-        <li>
-            <Card className="min-w-55 h-full border-zinc-950">
-                <CardHeader className="flex justify-between">
-                    <CardTitle>#{order.id}</CardTitle>
-                    <CardDescription>Tafel {order.table}</CardDescription>
-                </CardHeader>
-                <CardContent>
+    const setServed = () => {
+        const tpmResVar = {
+            ...restaurantVariables,
+            orders:
+                restaurantVariables.orders.map(o => o.id === order.id ?
                     {
-                        items.map((item) => {
-                            const product = products.find(p => p.id === item.productId);
-                            return (
-                                <div key={`${order.id}-${item.productId}`} className="space-x-2">
-                                    <Checkbox
-                                        id={`${order.id}-${item.productId}`}
-                                        name={`${order.id}-${item.productId}`}
-                                        checked={item.status === "ordered" ? false : true}
-                                        onCheckedChange={e => changeData(item)
-                                        }
-                                    />
-                                    <label htmlFor={`${order.id}-${item.productId}`}>{item.amount} x {product.name}</label>
-                                </div>
-                            )
-                        })
-                    }
+                        ...o,
+                        items: items.map(item => ({ ...item, status: 'served' }))
+                    } : o)
 
-                </CardContent>
-                <CardFooter className="flex justify-stretch w-full">
-                    <Button
-                        onClick={() => setRestaurantVariables({
-                            ...restaurantVariables,
-                            orders: [
-                                restaurantVariables.orders.map(o => o.id === order.id ? { ...o, status: served } : o)
-                            ]
-                        })}
-                        className="w-full" disabled={isDisabled()}
-                    >Serve</Button>
-                </CardFooter>
-            </Card>
-        </li>
+        }
+
+        console.log(tpmResVar);
+        setRestaurantVariables(tpmResVar);
+    }
+
+    return (
+        <Card className="min-w-55 border-zinc-950">
+            <CardHeader className="flex justify-between">
+                <CardTitle>#{order.id}</CardTitle>
+                <CardDescription>Tafel {order.table}</CardDescription>
+            </CardHeader>
+            <CardContent className="overflow-scroll">
+                {
+                    items.map((item) => {
+                        const product = products.find(p => p.id === item.productId);
+                        return (
+                            <div key={`${order.id}-${item.productId}`} className="space-x-2">
+                                <Checkbox
+                                    id={`${order.id}-${item.productId}`}
+                                    name={`${order.id}-${item.productId}`}
+                                    checked={item.status === "ordered" ? false : true}
+                                    onCheckedChange={e => changeData(item)
+                                    }
+                                />
+                                <label htmlFor={`${order.id}-${item.productId}`}>{item.amount} x {product.name}</label>
+                            </div>
+                        )
+                    })
+                }
+
+            </CardContent>
+            <CardFooter className="flex justify-stretch w-full">
+                <Button
+                    onClick={() => setServed()}
+                    className="w-full" disabled={isDisabled()}
+                >Serve</Button>
+            </CardFooter>
+        </Card>
     );
 };
 
