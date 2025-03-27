@@ -37,11 +37,13 @@ const Games = ({ restaurantVariables, setRestaurantVariables }) => {
                 <TabsList key='tables' className='min-w-full overflow-scroll gap-2'>
                     <TabsTrigger onClick={() => switchTable("overview")} value="overview" className="border-zinc-900">Overview</TabsTrigger>
                     {
-                        restaurantVariables.tables.map((table) => (
-                            <TabsTrigger
-                                onClick={() => switchTable(table)}
-                                value={table.id}>Tafel {table.id}</TabsTrigger>
-                        ))
+                        restaurantVariables.tables.map((table) =>
+                            table.status === 'unavailable'
+                                ? (<TabsTrigger
+                                    onClick={() => switchTable(table)}
+                                    value={table.id}>Tafel {table.id}</TabsTrigger>)
+                                : ""
+                        )
                     }
                 </TabsList>
             </Tabs>
@@ -49,7 +51,7 @@ const Games = ({ restaurantVariables, setRestaurantVariables }) => {
             <MenuList setRestaurantVariables={setRestaurantVariables} restaurantVariables={restaurantVariables} />
             <DialogFooter>
                 <DialogClose asChild>
-                    <Button onClick={() => handleClose()} className="border-zinc-800">Sluit</Button>
+                    <Button className="border-zinc-800">Sluit</Button>
                 </DialogClose>
             </DialogFooter>
         </DialogContent>

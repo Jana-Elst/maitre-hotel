@@ -65,8 +65,6 @@ const GameCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
         }
     }
 
-    //if statement om te checken of is overview of table? --> check welke dingen de tafel bezit
-
     return (
         <Button onClick={() => changeGame()} disabled={checkAvailable() <= 0 && !tableHasGame()} className={`${tableHasGame() ? "bg-zinc-300" : ""} min-w-40 min-h-25 flex flex-col`} min-w-40 min-h-25 flex flex-col variant="outline">
             <h3>{product.name}</h3>
