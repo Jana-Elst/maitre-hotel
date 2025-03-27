@@ -1,14 +1,5 @@
 import { productData } from "./data";
 
-const isEmpty = (object) => {
-    for (let key in object) {
-        if (object.hasOwnProperty(key)) {
-            return false;
-        }
-    }
-    return true;
-}
-
 /* ---------------- functies om rekening te maken ---------------- */
 const createBill = (restaurantVariables, tableId) => {
     if (tableId) {
@@ -84,6 +75,15 @@ const changeCategory = (restaurantVariables, category, subcategory) => {
     }
 
     return tmpResVar;
+}
+
+const isDisabled = (item) => {
+    let isDisabled = true;
+    if (item) {
+        isDisabled = false;
+    }
+
+    return isDisabled;
 }
 
 /* ---------------- Other functions ---------------- */
@@ -265,8 +265,6 @@ const removeProductFromOrder = (restaurantVariables, itm) => {
 
 
 /* ---------------- EXPORT FUNCTIONS ---------------- */
-export { isEmpty };
-
 export { createBill };
 export { getTotal };
 
@@ -278,3 +276,4 @@ export { deleteReservation };
 export { tableHasGame };
 export { handlePay };
 export {removeProductFromOrder};
+export {isDisabled};

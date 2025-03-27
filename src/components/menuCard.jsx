@@ -12,8 +12,6 @@ import {
 } from "@/components/ui/card"
 
 const MenuCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
-    const game = restaurantVariables.games.find((g) => g.gameId === product.id);
-
     const addProductToOrder = () => {
         // Check if product is already in order
         const tempResVar = {

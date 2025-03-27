@@ -2,15 +2,15 @@ import TableList from './tableList';
 
 import { Button } from "@/components/ui/button"
 import {
-    Dialog,
     DialogContent,
     DialogDescription,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
     DialogFooter,
     DialogClose
 } from "@/components/ui/dialog"
+
+import { isDisabled } from "../functions"
 
 const Reservation = ({ restaurantVariables, setRestaurantVariables }) => {
     const handleReservation = () => {
@@ -43,15 +43,6 @@ const Reservation = ({ restaurantVariables, setRestaurantVariables }) => {
         setRestaurantVariables(tmpResVar);
     }
 
-    const isDisabled = () => {
-        let isDisabled = true;
-        if (restaurantVariables.activeState.tableId) {
-            isDisabled = false;
-        }
-
-        return isDisabled;
-    }
-
     return (
         <DialogContent className="min-w-7xl ">
             <DialogHeader>
@@ -65,7 +56,7 @@ const Reservation = ({ restaurantVariables, setRestaurantVariables }) => {
                 </DialogClose>
                 <DialogClose asChild>
                     <Button
-                        disabled={isDisabled()}
+                        disabled={isDisabled(restaurantVariables.activeState.tableId)}
                         onClick={() => handleReservation()
                         }
                     >Maak reservatie</Button>
