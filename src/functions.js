@@ -192,7 +192,16 @@ const handlePay = (restaurantVariables) => {
         bills:
             restaurantVariables.bills.map(bill =>
                 restaurantVariables.activeState.tableId === bill.tableId ? { ...bill, paid: true } : bill
-            )
+            ),
+
+        games:
+            restaurantVariables.games.map(game =>
+                game.tableIds.includes(restaurantVariables.activeState.tableId)
+                    ? {
+                        ...game,
+                        tableIds: game.tableIds.filter(tId => tId !== restaurantVariables.activeState.tableId)
+                    }
+                    : game)
     }
 
     return tmpResVar

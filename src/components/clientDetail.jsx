@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button"
 import {
     AlertDialog,
+    AlertDialogTrigger,
     AlertDialogAction,
     AlertDialogCancel,
     AlertDialogContent,
@@ -18,7 +19,6 @@ import {
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogTitle,
-    AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 
 
@@ -98,7 +98,7 @@ const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
                         <AlertDialogContent>
                             <AlertDialogHeader>
                                 <AlertDialogTitle>€ {restaurantVariables.activeState.totalTableActive.toFixed(2)}</AlertDialogTitle>
-                                <AlertDialogDescription>fjkdljfdsklmd</AlertDialogDescription>
+                                <AlertDialogDescription>Wil je de bestelling afrekenen?</AlertDialogDescription>
                             </AlertDialogHeader>
                             <AlertDialogFooter>
                                 <AlertDialogCancel>Annuleer</AlertDialogCancel>
