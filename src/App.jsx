@@ -1,40 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './App.css'
 
 //different elements
 import OrderDashboard from './components/orderDashboard';
 import TableDashboard from './components/tableDashboard';
 import DetailDashboard from './components/detailDashboard.jsx';
-
-
-//imported data
-import { productData, restaurantData } from './data.js';
-
-const updateRestaurantData = (setRestaurantVariables, restaurantVariables) => {
-  console.log('update data');
-  const tableInformation = restaurantData().tables.map(table => ({
-    id: table.id,
-    status: "available"
-  }));
-
-  let gameInformation = {};
-  const categoryGames = productData().categories.find(category => category.name === 'Gezelschapsspelen');
-  if (categoryGames) {
-    const gameSubCategoryIds = categoryGames.subcategoryIds;
-    const gameData = productData().products.filter(product => gameSubCategoryIds.includes(product.subcategoryID));
-
-    gameInformation = gameData.map(game => ({
-      id: game.id,
-      tableIds: []
-    }));
-  }
-
-  setRestaurantVariables({
-    ...restaurantVariables,
-    tables: tableInformation,
-    games: gameInformation
-  });
-}
+import Header from './components/header.jsx';
+import Footer from './components/footer.jsx';
 
 function App() {
   const [restaurantVariables, setRestaurantVariables] = useState(
@@ -116,18 +88,16 @@ function App() {
     }
   );
 
-  //zorgen dat functie alleen in het begin uitgevoerd wordt
-  // useEffect(() => {
-  //   updateRestaurantData(setRestaurantVariables, restaurantVariables);
-  //   console.log(restaurantVariables)
-  // }, []);
-
   return (
-    <div className='app p-3 grid grid-rows-[max-content] gap-3 h-dvh' >
-      <h1 className="visually-hidden">Restaurant Dashboard</h1>
-      <OrderDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
-      <TableDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
-      <DetailDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
+    <div className='h-dvh p-3' >
+      <Header />
+      <main className='grid grid-rows-[max-content] gap-3'>
+        <OrderDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
+        <TableDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
+        <DetailDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
+      </main>
+      <Footer />
+
     </div >
   )
 }
