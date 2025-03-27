@@ -1,4 +1,4 @@
-import { createBill, getTotal } from "../functions"
+import { tableHasGame } from "../functions"
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -22,16 +22,6 @@ const GameCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
         return totalAvailable;
     }
 
-    const tableHasGame = () => {
-        const table = restaurantVariables.activeState.tableId;
-        if (table) {
-            if (game) {
-                return game.tableIds.includes(table);
-            }
-        }
-        return false;
-    }
-
     const changeGame = () => {
         if (restaurantVariables.activeState.tableId) {
             const tmpRestVar = {
@@ -40,7 +30,7 @@ const GameCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
                     restaurantVariables.games.some(game => game.gameId === product.id)
                         ? restaurantVariables.games.map(game =>
                             game.gameId === product.id
-                                ? tableHasGame()
+                                ? tableHasGame(restaurantVariables, game)
                                     ? {
                                         ...game,
                                         tableIds: game.tableIds.filter(tId => tId !== restaurantVariables.activeState.tableId)
@@ -66,7 +56,7 @@ const GameCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
     }
 
     return (
-        <Button onClick={() => changeGame()} disabled={checkAvailable() <= 0 && !tableHasGame()} className={`${tableHasGame() ? "bg-zinc-300" : ""} min-w-40 min-h-25 flex flex-col`} min-w-40 min-h-25 flex flex-col variant="outline">
+        <Button onClick={() => changeGame()} disabled={checkAvailable() <= 0 && !tableHasGame(restaurantVariables, game)} className={`${tableHasGame(restaurantVariables, game) ? "bg-zinc-300" : ""} min-w-40 min-h-25 flex flex-col`} min-w-40 min-h-25 flex flex-col variant="outline">
             <h3>{product.name}</h3>
             <p>Aantal: {product.value}</p>
             <p>Beschikbaar: {checkAvailable()}</p>

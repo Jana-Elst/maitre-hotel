@@ -3,14 +3,11 @@ import MenuList from "./menuList";
 import {
     Card,
     CardContent,
-    CardDescription,
     CardFooter,
     CardHeader,
-    CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-
 
 import { productData } from "../data";
 import { changeCategory, stopOrder } from "../functions";

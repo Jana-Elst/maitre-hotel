@@ -44,12 +44,6 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen 
                 }
                 : tmpResVar = { ...restaurantVariables }
 
-        restaurantVariables.tables.map(t => {
-            t.id === table.id
-                ? console.log(t)
-                : console.log(t)
-        });
-
         setRestaurantVariables(tmpResVar);
     }
 

@@ -1,5 +1,5 @@
 import { productData } from "../data";
-import { createBill, getTotal } from "../functions"
+import { createBill, deleteReservation, tableHasGame } from "../functions"
 
 import {
     Card,
@@ -22,7 +22,21 @@ const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
             <CardHeader>
                 <CardTitle>Tafel {restaurantVariables.activeState.tableId}</CardTitle>
             </CardHeader>
+            
             <CardContent className="flex flex-col gap-5 overflow-scroll">
+
+                {/* games linked to table */}
+                <ul>
+                    {
+                        restaurantVariables.games.map(game =>
+                            tableHasGame(restaurantVariables, game)
+                                ? <li>{productData.products.filter(product => game.gameId === product.id).map(product => product.name)}</li>
+                                : ""
+                        )
+                    }
+                </ul>
+
+                {/* old items on bill */}
                 <ul className={restaurantVariables.newOrder.items ? (restaurantVariables.newOrder.items[0] ? "text-zinc-400" : "") : ""}>
                     {
                         billItems ?
@@ -37,6 +51,8 @@ const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
                             }) : ""
                     }
                 </ul>
+
+                {/* new items on bill */}
                 <ul>
                     {
                         items ?
@@ -51,9 +67,10 @@ const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
                             }) : ""
                     }
                 </ul>
+
+                {/* price */}
                 <div className="grid grid-cols-(--detailTableOrder)">
                     {
-
                         restaurantVariables.activeState.totalTableActive ?
                             <p className="col-start-2 font-bold">€ {restaurantVariables.activeState.totalTableActive.toFixed(2)}</p>
                             : ""
@@ -61,11 +78,20 @@ const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
                 </div>
             </CardContent>
 
+            {/* Button */}
             {restaurantVariables.activeState.totalTableActive
                 ? <CardFooter>
                     <Button className="w-full">Afrekenen</Button>
                 </CardFooter>
-                : ""}
+                : restaurantVariables.tables.some(t => t.id === restaurantVariables.activeState.tableId && t.status === 'reservation')
+                    ? <CardFooter>
+                        <Button
+                            className="w-full"
+                            onClick={() => setRestaurantVariables(deleteReservation(restaurantVariables))}
+                        >Annuleer reservatie</Button>
+                    </CardFooter>
+                    : ""
+            }
         </Card>
     );
 };

@@ -98,7 +98,6 @@ const ordersForKitchen = (restaurantVariables) => {
 }
 
 const stopOrder = (restaurantVariables) => {
-    console.log("order is afgerond");
     //add newOrder to orders
     //remove newOrder
     //add order to bill + create one if their is no bill for the table
@@ -152,8 +151,40 @@ const stopOrder = (restaurantVariables) => {
     return (tmpResVar);
 }
 
+const deleteReservation = (restaurantVariables) => {
+    const tmpResVar = {
+        ...restaurantVariables,
 
-/* ---------------- Change setStates functions ---------------- */
+        tables:
+            restaurantVariables.tables.map(table =>
+                table.id === restaurantVariables.activeState.tableId ? { ...table, status: "available" } : table
+            ),
+
+        newOrder: [],
+
+        activeState: {
+            dashboard: "tables",
+            tableId: null,
+            categoryId: 1,
+            subcategoryId: 11
+        }
+    }
+
+    return tmpResVar
+}
+
+const tableHasGame = (restaurantVariables, game) => {
+    const table = restaurantVariables.activeState.tableId;
+    if (table) {
+        if (game) {
+            return game.tableIds.includes(table);
+        }
+    }
+    return false;
+}
+
+
+/* ---------------- EXPORT FUNCTIONS ---------------- */
 export { isEmpty };
 
 export { createBill };
@@ -163,3 +194,5 @@ export { changeCategory };
 
 export { ordersForKitchen };
 export { stopOrder };
+export { deleteReservation };
+export { tableHasGame };
