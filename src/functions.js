@@ -112,7 +112,6 @@ const stopOrder = (restaurantVariables) => {
     //add newOrder to orders
     //remove newOrder
     //add order to bill + create one if their is no bill for the table
-    console.log(restaurantVariables);
     let tmpResVar;
 
     restaurantVariables.newOrder.items.length > 0
@@ -160,7 +159,6 @@ const stopOrder = (restaurantVariables) => {
             }
         }
 
-    console.log(tmpResVar);
     return (tmpResVar);
 }
 
@@ -227,7 +225,6 @@ const tableHasGame = (restaurantVariables, game, table) => {
         table = restaurantVariables.activeState.tableId
     }
     
-    console.log(table);
     if (table) {
         if (game) {
             return game.tableIds.includes(table);

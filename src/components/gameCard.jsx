@@ -3,15 +3,12 @@ import { Button } from "@/components/ui/button"
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
 
 const GameCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
     const game = restaurantVariables.games.find((g) => g.gameId === product.id);
-    console.log(restaurantVariables.activeState.tableId);
 
     const checkAvailable = () => {
         const total = product.value;

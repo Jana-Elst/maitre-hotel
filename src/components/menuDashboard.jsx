@@ -60,7 +60,7 @@ const MenuDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
             </CardContent>
 
             <CardFooter>
-                <Button className="w-full" onClick={() => setRestaurantVariables(stopOrder(restaurantVariables))}>Bestelling afronden</Button>
+                <Button className="menuDashboard__button" onClick={() => setRestaurantVariables(stopOrder(restaurantVariables))}>Bestelling afronden</Button>
             </CardFooter>
         </Card >
     );

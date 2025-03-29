@@ -181,10 +181,7 @@ html {
   flex-direction: column;
   gap: var(--sp-xs);
   overflow-y: auto;
-}
-
-.orderCard {
-  width: 18rem;
+  width: 19rem;
 }
 
 .orderCard__header {
@@ -234,7 +231,13 @@ html {
 }
 
 .menuDashboard {
-  flex: 1
+  flex: 1;
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+}
+
+.menuDashboard__button {
+  width: 100%;
 }
 
 .menuList {
@@ -244,7 +247,8 @@ html {
   gap: var(--sp-xs);
 }
 
-.gameCard, .menuCard {
+.gameCard,
+.menuCard {
   height: 100%;
 }
 
@@ -257,7 +261,7 @@ html {
   flex-direction: row;
 }
 
-.gameCard__tableList li + li::before {
+.gameCard__tableList li+li::before {
   content: ',';
   padding-right: var(--sp-3xs);
 }

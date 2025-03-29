@@ -55,9 +55,7 @@ export const productData = {
 
     subcategories: [
         { id: 11, name: 'Koffie', categoryId: 1 },
-        { id: 12, name: 'Thee', categoryId: 1 },
-        { id: 31, name: 'Bordspellen', categoryId: 3 },
-        { id: 32, name: 'Kaartspellen', categoryId: 3 }
+        { id: 12, name: 'Thee', categoryId: 1 }
     ],
 
     products: [
@@ -76,13 +74,11 @@ export const productData = {
         { id: 202, name: 'Pancakes', price: 8.00, categoryId: 2 },
         { id: 203, name: 'Yoghurt met granola', price: 6.00, categoryId: 2 },
 
-        // Gezelschapsspel - Bordspellen
-        { id: 311, name: 'Rummikub', value: 4, subcategoryId: 31 },
-        { id: 312, name: 'Azul', value: 1, subcategoryId: 31 },
-        { id: 313, name: 'Carcassonne', value: 1, subcategoryId: 31 },
-        { id: 314, name: 'Ticket to Ride', value: 1, subcategoryId: 31 },
-
-        // Gezelschapsspel - Kaartspellen
-        { id: 321, name: 'Uno', value: 4, subcategoryId: 32 }
+        // Gezelschapsspel
+        { id: 311, name: 'Rummikub', value: 4, categoryId: 3},
+        { id: 312, name: 'Azul', value: 1, categoryId: 3 },
+        { id: 313, name: 'Carcassonne', value: 1, categoryId: 3 },
+        { id: 314, name: 'Ticket to Ride', value: 1, categoryId: 3 },
+        { id: 321, name: 'Uno', value: 4, categoryId: 3}
     ]
 }

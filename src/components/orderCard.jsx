@@ -63,7 +63,6 @@ const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
 
         }
 
-        console.log(tpmResVar);
         setRestaurantVariables(tpmResVar);
     }
 
@@ -82,8 +81,8 @@ const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
                                 order.items.map((item) => {
                                     const product = productData.products.find(p => p.id === item.productId);
                                     return (
-                                        <div>
-                                            <div key={`${order.id}-${item.productId}`} className="space-x-2 p-1">
+                                        <div key={`${order.id}-${item.productId}`}>
+                                            <div className="space-x-2 p-1">
                                                 <Checkbox
                                                     id={`${order.id}-${item.productId}`}
                                                     name={`${order.id}-${item.productId}`}
