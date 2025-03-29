@@ -23,7 +23,9 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen 
                     ...restaurantVariables.activeState,
                     dashboard: "menu",
                     tableId: table.id,
-                    totalTableActive: total
+                    totalTableActive: total,
+                    categoryId: 1,
+                    subcategoryId: 11
                 },
 
                 newOrder: {

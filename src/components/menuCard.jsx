@@ -1,15 +1,6 @@
-import { createBill, getTotal } from "../functions"
+import { getTotal } from "../functions"
 import { Button } from "@/components/ui/button"
 import GameCard from "./gameCard"
-
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
 
 const MenuCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
     const addProductToOrder = () => {
@@ -54,7 +45,7 @@ const MenuCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
 
     return (
         restaurantVariables.activeState.categoryId !== 3
-            ? (<Button className="min-w-40 min-h-25 flex flex-col" variant="outline" onClick={() => addProductToOrder()}>
+            ? (<Button className="" variant="outline" onClick={() => addProductToOrder()}>
                 <h3>{product.name}</h3>
                 <p>€ {product.price.toFixed(2)}</p>
             </Button>)

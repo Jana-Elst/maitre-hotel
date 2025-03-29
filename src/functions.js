@@ -77,6 +77,18 @@ const changeCategory = (restaurantVariables, category, subcategory) => {
     return tmpResVar;
 }
 
+const changeTable = (restaurantVariables, table) => {
+    const tmpResVar = {
+        ...restaurantVariables,
+        activeState: {
+            ...restaurantVariables.activeState,
+            tableId: table
+        }
+    }
+
+    return tmpResVar;
+}
+
 const isDisabled = (item) => {
     let isDisabled = true;
     if (item) {
@@ -234,7 +246,7 @@ const removeProductFromOrder = (restaurantVariables, itm) => {
                             ? {
                                 ...i,
                                 amount: i.amount - 1,
-                                status: i.amount-1 <= 0 ? 'served' : i.status
+                                status: i.amount - 1 <= 0 ? 'served' : i.status
                             }
                             : i
                     )
@@ -269,11 +281,12 @@ export { createBill };
 export { getTotal };
 
 export { changeCategory };
+export { changeTable };
 
 export { ordersForKitchen };
 export { stopOrder };
 export { deleteReservation };
 export { tableHasGame };
 export { handlePay };
-export {removeProductFromOrder};
-export {isDisabled};
+export { removeProductFromOrder };
+export { isDisabled };

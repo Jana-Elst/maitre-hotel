@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/dialog"
 
 //js functions
-import { changeCategory } from '../functions';
+import { changeCategory, changeTable } from '../functions';
 
 const TableDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
     return (
@@ -37,7 +37,7 @@ const TableDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
 
             <CardFooter className="gap-4 grid grid-cols-(--tableDashBoardBtns)">
                 <Dialog>
-                    <DialogTrigger asChild className='w-full'><Button className='w-full'>Reserveren</Button></DialogTrigger>
+                    <DialogTrigger asChild className='w-full'><Button onClick= {() => setRestaurantVariables(changeTable(restaurantVariables, null))} className='w-full'>Reserveren</Button></DialogTrigger>
                     <Reservation setRestaurantVariables={setRestaurantVariables} restaurantVariables={restaurantVariables} />
                 </Dialog>
 
