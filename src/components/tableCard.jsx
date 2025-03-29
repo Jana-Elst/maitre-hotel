@@ -70,6 +70,32 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen 
                 })
     }
 
+    const showIcon = () => {
+        let icon = 'restaurant'
+        let orderId;
+
+        table.status === 'unavailable' &&
+            restaurantVariables.bills.find(bill => bill.tableId === table.id && bill.paid === false)
+                .orders.map(orderId => {
+                    orderId = orderId
+                    const order = restaurantVariables.orders.find(order => order.id === orderId)
+                    const statusOrdersTable = order.items.some(item => item.status !== 'served')
+                        ? icon = "schedule"
+                        : ""
+                });
+
+
+        table.status === "reservation" ?
+            icon = 'event'
+            : table.status === "available"
+                ? icon = 'check'
+                : ""
+
+
+
+        return <p key={orderId} className="material-symbols-outlined">{icon}</p>;
+    }
+
     return (
         <li className="tableCard">
             <button
@@ -90,24 +116,7 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen 
 
                                         {
                                             // status icon
-                                            table.status === 'unavailable' &&
-                                            restaurantVariables.bills.find(bill => bill.tableId === table.id && bill.paid === false)
-                                                .orders.map(orderId => {
-                                                    const order = restaurantVariables.orders.find(order => order.id === orderId)
-                                                    const statusOrdersTable = order.items.some(item => item.status !== 'served')
-                                                        ? "schedule"
-                                                        : "restaurant"
-
-                                                    return <p key={orderId} className="material-symbols-outlined">{statusOrdersTable}</p>;
-                                                })
-                                        }
-
-                                        {
-                                            table.status === "reservation" ?
-                                                <p className="material-symbols-outlined">event</p>
-                                                : table.status === "available"
-                                                    ? <p className="material-symbols-outlined">check</p>
-                                                    : ""
+                                            showIcon()
                                         }
 
                                     </Badge>
