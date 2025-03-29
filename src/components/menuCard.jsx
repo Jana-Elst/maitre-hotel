@@ -45,7 +45,7 @@ const MenuCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
 
     return (
         restaurantVariables.activeState.categoryId !== 3
-            ? (<Button className="" variant="outline" onClick={() => addProductToOrder()}>
+            ? (<Button className="menuCard" variant="outline" onClick={() => addProductToOrder()}>
                 <h3>{product.name}</h3>
                 <p>€ {product.price.toFixed(2)}</p>
             </Button>)

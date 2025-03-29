@@ -27,7 +27,7 @@ const Games = ({ restaurantVariables, setRestaurantVariables }) => {
     }
 
     return (
-        <DialogContent>
+        <DialogContent className='pop-up'>
             {/* overview + navigatietafels */}
             <DialogHeader>
                 <DialogTitle>Gezelschapsspelletjes</DialogTitle>

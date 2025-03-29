@@ -119,12 +119,12 @@ html {
   overflow-y: auto;
 }
 
-.reservation {
+.pop-up {
   min-width: 80vw;
 }
 
 .reservation__tableList {
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 
 .tableCard {
@@ -235,6 +235,31 @@ html {
 
 .menuDashboard {
   flex: 1
+}
+
+.menuList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-rows: max-content;
+  gap: var(--sp-xs);
+}
+
+.gameCard, .menuCard {
+  height: 100%;
+}
+
+.gameCard__content {
+  text-align: start;
+}
+
+.gameCard__tableList {
+  display: flex;
+  flex-direction: row;
+}
+
+.gameCard__tableList li + li::before {
+  content: ',';
+  padding-right: var(--sp-3xs);
 }
 
 /* ----------------------------------------------- */

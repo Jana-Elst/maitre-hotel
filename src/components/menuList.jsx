@@ -3,7 +3,7 @@ import MenuCard from "./menuCard"
 
 const MenuList = ({ restaurantVariables, setRestaurantVariables }) => {
     return (
-        <ul key={`${restaurantVariables.activeState.categoryId}-${restaurantVariables.activeState.subcategoryId}`} className="grid grid-cols-(--menuItems) gap-4">
+        <ul key={`${restaurantVariables.activeState.categoryId}-${restaurantVariables.activeState.subcategoryId}`} className="menuList">
             {/* afhankelijk van of de category subvvategories heeft of niet moeter er andere dingen getoond */}
             {
                 productData.products.map((product) =>
