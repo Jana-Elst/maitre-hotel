@@ -35,16 +35,18 @@ const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
 
             <CardContent className="flex flex-col gap-5 overflow-scroll">
 
-                {/* games linked to table */}
-                <ul>
-                    {
-                        restaurantVariables.games.map(game =>
-                            tableHasGame(restaurantVariables, game)
-                                ? <li key={`${game.gameId}`}>{productData.products.filter(product => game.gameId === product.id).map(product => product.name)}</li>
-                                : ""
-                        )
-                    }
-                </ul>
+                {
+                    // games
+                    <ul>
+                        {
+                            restaurantVariables.games.map(game =>
+                                tableHasGame(restaurantVariables, game, restaurantVariables.activeState.tableId)
+                                    ? <li key={`${game.gameId}`}>{productData.products.filter(product => game.gameId === product.id).map(product => product.name)}</li>
+                                    : ""
+                            )
+                        }
+                    </ul>
+                }
 
                 {/* old items on bill */}
                 <ul className={restaurantVariables.newOrder.items ? (restaurantVariables.newOrder.items[0] ? "text-zinc-400" : "") : ""}>

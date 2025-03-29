@@ -223,7 +223,11 @@ const handlePay = (restaurantVariables) => {
 }
 
 const tableHasGame = (restaurantVariables, game, table) => {
-    // const table = restaurantVariables.activeState.tableId;
+    if (!table) {
+        table = restaurantVariables.activeState.tableId
+    }
+    
+    console.log(table);
     if (table) {
         if (game) {
             return game.tableIds.includes(table);

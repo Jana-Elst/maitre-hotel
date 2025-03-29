@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button"
 
 const GameCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
     const game = restaurantVariables.games.find((g) => g.gameId === product.id);
+    console.log(restaurantVariables.activeState.tableId);
+
     const checkAvailable = () => {
         const total = product.value;
         let totalAvailable = total;
@@ -22,7 +24,7 @@ const GameCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
                     restaurantVariables.games.some(game => game.gameId === product.id)
                         ? restaurantVariables.games.map(game =>
                             game.gameId === product.id
-                                ? tableHasGame(restaurantVariables, game)
+                                ? tableHasGame(restaurantVariables, game, restaurantVariables.activeState.tableId)
                                     ? {
                                         ...game,
                                         tableIds: game.tableIds.filter(tId => tId !== restaurantVariables.activeState.tableId)
