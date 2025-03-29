@@ -50,7 +50,7 @@ const MenuCard = ({ product, restaurantVariables, setRestaurantVariables }) => {
     }
 
     return (
-        restaurantVariables.activeState.categoryId !== 3
+        restaurantVariables.activeState.categoryId !== 9
             ? (<button className="menuCard" onClick={() => addProductToOrder()}>
                 <Card>
                     <CardHeader>

@@ -110,7 +110,7 @@ function App() {
       ],
 
       games: [
-        { gameId: 311, tableIds: [1, 2] }
+        { gameId: 911, tableIds: [1, 2] }
       ],
 
       activeState: {

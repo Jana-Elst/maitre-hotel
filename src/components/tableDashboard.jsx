@@ -42,7 +42,7 @@ const TableDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
                 </Dialog>
 
                 <Dialog>
-                    <DialogTrigger asChild onClick={() => setRestaurantVariables(changeCategory(restaurantVariables, 3, 31))}><Button variant="outline">Gezelschapsspelletjes</Button></DialogTrigger>
+                    <DialogTrigger asChild onClick={() => setRestaurantVariables(changeCategory(restaurantVariables, 9, 91))}><Button variant="outline">Gezelschapsspelletjes</Button></DialogTrigger>
                     <Games setRestaurantVariables={setRestaurantVariables} restaurantVariables={restaurantVariables} />
                 </Dialog>
             </CardFooter>
