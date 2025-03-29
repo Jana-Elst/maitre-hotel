@@ -57,6 +57,19 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen 
         return isDisabled
     }
 
+    const icon = () => {
+        table.status === 'unavailable' &&
+            restaurantVariables.bills.find(bill => bill.tableId === table.id && bill.paid === false)
+                .orders.map(orderId => {
+                    const order = restaurantVariables.orders.find(order => order.id === orderId)
+                    const statusOrdersTable = order.items.some(item => item.status !== 'served')
+                        ? "schedule"
+                        : "restaurant"
+
+                    return <p key={orderId} className="material-symbols-outlined">{statusOrdersTable}</p>;
+                })
+    }
+
     return (
         <li className="tableCard">
             <button
@@ -72,7 +85,7 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen 
                                 <CardTitle className="">Tafel {table.id}</CardTitle>
                                 <CardDescription>
                                     <Badge className={`tableCard__badge ${table.status === "unavailable" ? "bg-red-400" : table.status === "reservation" ? "bg-amber-400" : "bg-green-500"}`}>
-                                        
+
                                         <p>{table.status}</p>
 
                                         {

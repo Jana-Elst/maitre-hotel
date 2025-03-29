@@ -20,6 +20,8 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Separator } from "@/components/ui/separator"
 
 
 const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
@@ -28,12 +30,12 @@ const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
     const billItems = createBill(restaurantVariables, restaurantVariables.activeState.tableId);
 
     return (
-        <Card className='h-full grid grid-rows-(--clientDetail)'>
+        <Card className='clientDetail'>
             <CardHeader>
                 <CardTitle>Tafel {restaurantVariables.activeState.tableId}</CardTitle>
             </CardHeader>
 
-            <CardContent className="flex flex-col gap-5 overflow-scroll">
+            <CardContent className="clientDetail__content">
 
                 {
                     // games
@@ -48,43 +50,44 @@ const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
                     </ul>
                 }
 
-                {/* old items on bill */}
-                <ul className={restaurantVariables.newOrder.items ? (restaurantVariables.newOrder.items[0] ? "text-zinc-400" : "") : ""}>
-                    {
-                        billItems ?
-                            billItems.map((item) => {
-                                const product = products.find(p => p.id === item.productId);
-                                return (
-                                    <li key={product.id} className="grid grid-cols-(--detailTableOrder) hover:text-zinc-300" onClick={() => setRestaurantVariables(removeProductFromOrder(restaurantVariables, item))}>
-                                        <p>{item.amount} x {product.name}</p>
-                                        <p>€ {product.price.toFixed(2)}</p>
-                                    </li>
-                                )
-                            }) : ""
-                    }
-                </ul>
+                    {/* old items on bill */}
+                    <ul className={restaurantVariables.newOrder.items ? (restaurantVariables.newOrder.items[0] ? "text-zinc-400" : "") : ""}>
+                        {
+                            billItems ?
+                                billItems.map((item) => {
+                                    const product = products.find(p => p.id === item.productId);
+                                    return (
+                                        <li key={product.id} className="clientDetail__orderItem hover:text-zinc-300" onClick={() => setRestaurantVariables(removeProductFromOrder(restaurantVariables, item))}>
+                                            <p>{item.amount} x {product.name}</p>
+                                            <p className="clientDetail__orderPrice">€ {product.price.toFixed(2)}</p>
+                                        </li>
+                                    )
+                                }) : ""
+                        }
+                    </ul>
 
-                {/* new items on bill */}
-                <ul>
-                    {
-                        items ?
-                            items.map((item) => {
-                                const product = products.find(p => p.id === item.productId);
-                                return (
-                                    <li key={product.id} className="grid grid-cols-(--detailTableOrder) hover:text-zinc-300" onClick = {() => setRestaurantVariables(removeProductFromOrder(restaurantVariables, item))}>
-                                        <p>{item.amount} x {product.name}</p>
-                                        <p>€ {product.price.toFixed(2)}</p>
-                                    </li>
-                                )
-                            }) : ""
-                    }
-                </ul>
+                    {/* new items on bill */}
+                    <ul>
+                        {
+                            items ?
+                                items.map((item) => {
+                                    const product = products.find(p => p.id === item.productId);
+                                    return (
+                                        <li key={product.id} className="clientDetail__orderItem hover:text-zinc-300" onClick={() => setRestaurantVariables(removeProductFromOrder(restaurantVariables, item))}>
+                                            <p>{item.amount} x {product.name}</p>
+                                            <p className="clientDetail__orderPrice">€ {product.price.toFixed(2)}</p>
+                                        </li>
+                                    )
+                                }) : ""
+                        }
+                    </ul>
 
                 {/* price */}
-                <div className="grid grid-cols-(--detailTableOrder)">
+                <Separator />
+                <div className="">
                     {
                         restaurantVariables.activeState.totalTableActive ?
-                            <p className="col-start-2 font-bold">€ {restaurantVariables.activeState.totalTableActive.toFixed(2)}</p>
+                            <p className="clientDetail__total">€ {restaurantVariables.activeState.totalTableActive.toFixed(2)}</p>
                             : ""
                     }
                 </div>
@@ -110,7 +113,7 @@ const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
                     </AlertDialog>
                 </CardFooter>
                 : restaurantVariables.tables.some(t => t.id === restaurantVariables.activeState.tableId && t.status === 'reservation')
-                    ? <CardFooter>
+                    ? <CardFooter className='clientDetail__button'>
                         <Button
                             className="w-full"
                             onClick={() => setRestaurantVariables(deleteReservation(restaurantVariables))}

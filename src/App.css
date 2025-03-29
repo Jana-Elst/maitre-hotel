@@ -179,6 +179,41 @@ html {
   margin-left: var(--sp-3xs)
 }
 
+.detailDashboard {
+  display: grid;
+  grid-template-columns: minmax(25rem, max-content) 1fr;
+  gap: var(--sp-s);
+}
+
+.clientDetail {
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+}
+
+.clientDetail__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+}
+
+.clientDetail__orderItem {
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+}
+
+.clientDetail__orderPrice {
+  justify-self: end;
+}
+
+.clientDetail__button {
+  align-self: flex-end;
+}
+
+.clientDetail__total {
+  text-align: end;
+  font-weight: 600;
+}
+
 /* ----------------------------------------------- */
 .hidden {
   display: none;
