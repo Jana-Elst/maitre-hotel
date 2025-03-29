@@ -32,13 +32,13 @@ function App() {
       bills: [
         {
           id: 1,
-          orders: [1],
+          orders: [1, 3],
           paid: false,
           tableId: 1
         },
         {
           id: 2,
-          orders: [2],
+          orders: [2, 4],
           paid: false,
           tableId: 2
         },
@@ -76,7 +76,8 @@ function App() {
               status: "ready" //ordered - ready - served
             }
           ]
-        }, {
+        },
+        {
           id: 3,
           items: [
             {
@@ -91,6 +92,21 @@ function App() {
             }
           ],
         },
+        {
+          id: 4,
+          items: [
+            {
+              productId: 111,
+              amount: 3,
+              status: "ordered" //ordered - ready - served
+            },
+            {
+              productId: 112,
+              amount: 3,
+              status: "ordered" //ordered - ready - served
+            }
+          ],
+        }
       ],
 
       games: [
@@ -111,9 +127,9 @@ function App() {
     <div className='app'>
       <Header/>
       <main className='dashboard'>
-        <OrderDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
         <TableDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
         <DetailDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
+        <OrderDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
       </main>
       <Footer />
 

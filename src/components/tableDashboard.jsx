@@ -21,23 +21,23 @@ import {
 
 //js functions
 import { changeCategory, changeTable } from '../functions';
+import { ScrollArea } from "@/components/ui/scroll-area"
+
 
 const TableDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
     return (
         <Card className={`tableDashboard ${restaurantVariables.activeState.dashboard === "tables" ? "" : "hidden"}`}>
             <CardHeader>
-                <CardTitle>
-                    Table overview
-                </CardTitle>
+                <CardTitle>Table overview</CardTitle>
             </CardHeader>
 
             <CardContent className='tableDashboard__tables'>
-                <TableList setRestaurantVariables={setRestaurantVariables} restaurantVariables={restaurantVariables} screen={"dashboardScreen"} />
+                    <TableList setRestaurantVariables={setRestaurantVariables} restaurantVariables={restaurantVariables} screen={"dashboardScreen"} />
             </CardContent>
 
-            <CardFooter className="tableFooter">
+            <CardFooter className="tableFooter pt-4">
                 <Dialog>
-                    <DialogTrigger asChild className='w-full'><Button onClick= {() =>setRestaurantVariables(changeTable(restaurantVariables, null))} className='w-full'>Reserveren</Button></DialogTrigger>
+                    <DialogTrigger asChild className='w-full'><Button onClick={() => setRestaurantVariables(changeTable(restaurantVariables, null))} className='w-full'>Reserveren</Button></DialogTrigger>
                     <Reservation setRestaurantVariables={setRestaurantVariables} restaurantVariables={restaurantVariables} />
                 </Dialog>
 

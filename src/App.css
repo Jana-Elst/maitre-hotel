@@ -73,18 +73,19 @@ html {
 }
 
 .app {
+  height: 100dvh;
+
   padding: var(--sp-s);
-  min-height: 100dvh;
-  display: grid;
-  grid-template-rows: min-content 1fr min-content;
+  display: flex;
+  flex-direction: column;
   gap: var(--sp-s);
 }
 
 .dashboard {
-  display: grid;
-  grid-template-rows: min-content 1fr;
-  gap: var();
+  flex-grow: 1;
+  display: flex;
   gap: var(--sp-s);
+  overflow: hidden;
 }
 
 .header {
@@ -100,9 +101,13 @@ html {
 }
 
 .tableDashboard {
-  display: grid;
-  grid-template-rows: min-content 1fr min-content;
-  align-items: center;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.tableDashboard__tables {
+  overflow-y: auto;
 }
 
 .tableList {
@@ -110,13 +115,21 @@ html {
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-template-rows: max-content;
   gap: var(--sp-xs);
+
+  overflow-y: auto;
+}
+
+.reservation {
+  min-width: 80vw;
+}
+
+.reservation__tableList {
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 
 .tableCard {
   min-height: 10rem;
   min-width: 100%;
-
-  display: flex;
 }
 
 .tableFooter {
@@ -131,7 +144,7 @@ html {
   align-items: center;
 }
 
-.tableCard__content{
+.tableCard__content {
   display: flex;
   justify-content: space-between;
 }
@@ -154,18 +167,23 @@ html {
   justify-content: center;
 }
 
+.ordersDashboard {
+  display: flex;
+  flex-direction: column;
+}
+
 .ordersDashboard__content {
-  width: calc(100vw - 2*var(--sp-s));
+  overflow-y: auto;
 }
 
 .ordersDashboard__list {
   display: flex;
+  flex-direction: column;
   gap: var(--sp-xs);
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .orderCard {
-  height: 100%;
   width: 18rem;
 }
 
@@ -180,12 +198,13 @@ html {
 }
 
 .detailDashboard {
-  display: grid;
-  grid-template-columns: minmax(25rem, max-content) 1fr;
+  width: 100%;
+  display: flex;
   gap: var(--sp-s);
 }
 
 .clientDetail {
+  min-width: 22rem;
   display: grid;
   grid-template-rows: min-content 1fr min-content;
 }
@@ -213,6 +232,12 @@ html {
   text-align: end;
   font-weight: 600;
 }
+
+.menuDashboard {
+  flex: 1
+}
+
+/* ----------------------------------------------- */
 
 /* ----------------------------------------------- */
 .hidden {

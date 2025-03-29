@@ -44,7 +44,7 @@ const Reservation = ({ restaurantVariables, setRestaurantVariables }) => {
     }
 
     return (
-        <DialogContent className="min-w-7xl ">
+        <DialogContent className="reservation">
             <DialogHeader>
                 <DialogTitle>Reservatie</DialogTitle>
                 <DialogDescription className='visually-hidden'>Reservations</DialogDescription>

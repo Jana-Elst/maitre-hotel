@@ -15,7 +15,7 @@ import { changeCategory, stopOrder } from "../functions";
 
 const MenuDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
     return (
-        <Card className="h-full grid grid-rows-(--clientDetail)">
+        <Card className="menuDashboard">
             <CardHeader>
                 <p></p>
                 {/* navigatie != onderdelen menu */}

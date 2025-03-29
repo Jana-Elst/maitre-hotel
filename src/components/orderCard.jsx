@@ -77,7 +77,7 @@ const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
                     </CardHeader>
 
                     <CardContent>
-                        <ScrollArea className="h-30">
+                        <ScrollArea className="h-20">
                             {
                                 order.items.map((item) => {
                                     const product = productData.products.find(p => p.id === item.productId);

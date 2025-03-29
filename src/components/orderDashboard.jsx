@@ -11,7 +11,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 
 const orderDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
     return (
-        <Card className="">
+        <Card className={`ordersDashboard ${restaurantVariables.activeState.dashboard === "tables" ? "" : "hidden"}`}>
             <CardHeader>
                 <CardTitle>Orders</CardTitle>
             </CardHeader>
@@ -19,7 +19,7 @@ const orderDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
             <CardContent className="ordersDashboard__content">
                     {restaurantVariables.orders
                         ? (
-                        <ul className="ordersDashboard__list">
+                            <ul className="ordersDashboard__list">
                                 {
                                     ordersForKitchen(restaurantVariables).map((order) =>
                                         order && order.id
@@ -37,7 +37,7 @@ const orderDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
                         : ""
                     }
             </CardContent>
-        </Card>
+        </Card >
     );
 };
 
