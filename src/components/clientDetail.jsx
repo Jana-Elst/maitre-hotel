@@ -140,7 +140,7 @@ const clientDetail = ({ restaurantVariables, setRestaurantVariables }) => {
                 console.log(restaurantVariables.bills)
             }
             {
-                restaurantVariables.bills.some(bill => bill.paid === false && bill.tableId === restaurantVariables.activeState.tableId)
+                restaurantVariables.bills.some(bill => bill.paid === false && bill.tableId === restaurantVariables.activeState.tableId || restaurantVariables.activeState.totalTableActive)
                     ? <CardFooter>
                         <AlertDialog>
                             <AlertDialogTrigger asChild>
