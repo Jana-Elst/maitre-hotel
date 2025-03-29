@@ -12,14 +12,8 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
 
 const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
-    const products = productData.products;
-    const items = order.items;
-    console.log(order);
-    console.log(items);
-
     //status order 1 item aanpassen
-    //orders --> order --> items --> item
-    const changeData = (item) => {
+    const changeStatus = (item) => {
         const tmpResVar = {
             ...restaurantVariables,
             orders:
@@ -42,6 +36,7 @@ const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
 
     const isDisabled = () => {
         let isDisabled = false;
+        const items = order.items
 
         if (items) {
             items.forEach(item => {
@@ -61,7 +56,7 @@ const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
                 restaurantVariables.orders.map(o => o.id === order.id ?
                     {
                         ...o,
-                        items: items.map(item => ({ ...item, status: 'served' }))
+                        items: order.items.map(item => ({ ...item, status: 'served' }))
                     } : o)
 
         }
@@ -70,40 +65,43 @@ const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
         setRestaurantVariables(tpmResVar);
     }
 
-    if (items) {
+    if (order.items) {
         return (
-            <Card className="min-w-55 border-zinc-950">
-                <CardHeader className="flex justify-between">
-                    <CardTitle>#{order.id}</CardTitle>
-                    <CardDescription>Tafel {order.table}</CardDescription>
-                </CardHeader>
-                <CardContent className="overflow-scroll">
-                    {
-                        items.map((item) => {
-                            const product = products.find(p => p.id === item.productId);
-                            return (
-                                <div key={`${order.id}-${item.productId}`} className="space-x-2">
-                                    <Checkbox
-                                        id={`${order.id}-${item.productId}`}
-                                        name={`${order.id}-${item.productId}`}
-                                        checked={item.status === "ordered" ? false : true}
-                                        onCheckedChange={e => changeData(item)
-                                        }
-                                    />
-                                    <label htmlFor={`${order.id}-${item.productId}`}>{item.amount} x {product.name}</label>
-                                </div>
-                            )
-                        })
-                    }
+            <li key={order.id}>
+                <Card className="min-w-55 border-zinc-950">
+                    <CardHeader className="flex justify-between">
+                        <CardTitle>#{order.id}</CardTitle>
+                        <CardDescription>Tafel {restaurantVariables.bills.find(bill => bill.orders.includes(order.id)).tableId}</CardDescription>
+                    </CardHeader>
 
-                </CardContent>
-                <CardFooter className="flex justify-stretch w-full">
-                    <Button
-                        onClick={() => setServed()}
-                        className="w-full" disabled={isDisabled()}
-                    >Serve</Button>
-                </CardFooter>
-            </Card>
+                    <CardContent className="overflow-scroll">
+                        {
+                            order.items.map((item) => {
+                                const product = productData.products.find(p => p.id === item.productId);
+                                return (
+                                    <div key={`${order.id}-${item.productId}`} className="space-x-2">
+                                        <Checkbox
+                                            id={`${order.id}-${item.productId}`}
+                                            name={`${order.id}-${item.productId}`}
+                                            checked={item.status === "ordered" ? false : true}
+                                            onCheckedChange={e => changeStatus(item)
+                                            }
+                                        />
+                                        <label htmlFor={`${order.id}-${item.productId}`}>{item.amount} x {product.name}</label>
+                                    </div>
+                                )
+                            })
+                        }
+
+                    </CardContent>
+                    <CardFooter className="flex justify-stretch w-full">
+                        <Button
+                            onClick={() => setServed()}
+                            className="w-full" disabled={isDisabled()}
+                        >Serve</Button>
+                    </CardFooter>
+                </Card>
+            </li>
         );
     } else {
         return ""

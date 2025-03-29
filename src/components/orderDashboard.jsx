@@ -11,7 +11,6 @@ import {
 
 
 const orderDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
-    console.log('hier kijken!!!',restaurantVariables.orders);
     return (
         <Card className="dashboard orders h-[33vh] overflow-hidden">
             <CardHeader>
@@ -23,13 +22,17 @@ const orderDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
                     ? (
                         <ul className="orders__list flex flex-row space-x-4 h-full">
                             {
-                                ordersForKitchen(restaurantVariables).map((order) => (
-                                    <OrderCard
-                                        key={order.id}
-                                        order={order}
-                                        setRestaurantVariables={setRestaurantVariables}
-                                        restaurantVariables={restaurantVariables} />
-                                ))
+                                ordersForKitchen(restaurantVariables).map((order) =>
+                                    order && order.id
+                                        ? (
+                                            <OrderCard
+                                                key={order.id}
+                                                order={order}
+                                                setRestaurantVariables={setRestaurantVariables}
+                                                restaurantVariables={restaurantVariables} />
+                                        )
+                                        : null
+                                )
                             }
                         </ul>)
                     : (<p>Alle orders zijn verwerkt.</p>)}

@@ -210,8 +210,8 @@ const handlePay = (restaurantVariables) => {
     return tmpResVar2
 }
 
-const tableHasGame = (restaurantVariables, game) => {
-    const table = restaurantVariables.activeState.tableId;
+const tableHasGame = (restaurantVariables, game, table) => {
+    // const table = restaurantVariables.activeState.tableId;
     if (table) {
         if (game) {
             return game.tableIds.includes(table);
