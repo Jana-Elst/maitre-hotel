@@ -1,3 +1,6 @@
+// Je kan bij een rekening elementen verwijderen door op het item te klikken.
+// Dit is een belangrijke hidden affordance ;))
+
 import { useState } from 'react'
 import './App.css'
 
