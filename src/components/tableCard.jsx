@@ -58,7 +58,7 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen 
     }
 
     return (
-        <li>
+        <li className="tableCard">
             <button
                 className="tableCard"
                 onClick={() => handleClick()}
@@ -67,11 +67,14 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen 
 
                 {
                     screen === "dashboardScreen"
-                        ? <Card className={`${table.status === "unavailable" ? "border-red-300 bg-red-50 hover:bg-red-100" : table.status === "reservation" ? "border-amber-300 bg-amber-50 hover:bg-amber-100" : "border-green-300 bg-green-50 hover:bg-green-100"} min-h-30`}>
-                            <CardHeader className="flex justify-between">
+                        ? <Card className={`tableCard ${table.status === "unavailable" ? "border-red-300 bg-red-50 hover:bg-red-100" : table.status === "reservation" ? "border-amber-300 bg-amber-50 hover:bg-amber-100" : "border-green-300 bg-green-50 hover:bg-green-100"} min-h-30`}>
+                            <CardHeader className="tableCard__header">
                                 <CardTitle className="">Tafel {table.id}</CardTitle>
                                 <CardDescription asChild>
-                                    <Badge className={`${table.status === "unavailable" ? "bg-red-400" : table.status === "reservation" ? "bg-amber-400" : "bg-green-500"}`}>
+                                    <Badge className={`tableCard__badge ${table.status === "unavailable" ? "bg-red-400" : table.status === "reservation" ? "bg-amber-400" : "bg-green-500"}`}>
+                                        
+                                        <p>{table.status}</p>
+
                                         {
                                             // status icon
                                             table.status === 'unavailable' &&
@@ -86,12 +89,19 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen 
                                                 })
                                         }
 
-                                        <p>{table.status}</p>
+                                        {
+                                            table.status === "reservation" ?
+                                                <p className="material-symbols-outlined">event</p>
+                                                : table.status === "available"
+                                                    ? <p className="material-symbols-outlined">check</p>
+                                                    : ""
+                                        }
+
                                     </Badge>
                                 </CardDescription>
 
                             </CardHeader>
-                            <CardContent className="tableCard__content">
+                            <CardFooter className="tableCard__content">
                                 {
                                     // games
                                     <ul className="tableCard__games">
@@ -109,7 +119,7 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen 
                                     //total
                                     total ? <p className="tableCard__price">€ {total.toFixed(2)}</p> : ""
                                 }
-                            </CardContent>
+                            </CardFooter>
                         </Card>
 
                         : screen === "reservationScreen"

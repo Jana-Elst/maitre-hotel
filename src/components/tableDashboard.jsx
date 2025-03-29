@@ -24,18 +24,18 @@ import { changeCategory, changeTable } from '../functions';
 
 const TableDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
     return (
-        <Card className={`dashboard tables grid grid-rows-(--tableDashboard) justify-center items-center ${restaurantVariables.activeState.dashboard === "tables" ? "" : "hidden"}`}>
+        <Card className={`tableDashboard ${restaurantVariables.activeState.dashboard === "tables" ? "" : "hidden"}`}>
             <CardHeader>
                 <CardTitle>
                     Table overview
                 </CardTitle>
             </CardHeader>
 
-            <CardContent>
+            <CardContent className='tableDashboard__tables'>
                 <TableList setRestaurantVariables={setRestaurantVariables} restaurantVariables={restaurantVariables} screen={"dashboardScreen"} />
             </CardContent>
 
-            <CardFooter className="gap-4 grid grid-cols-(--tableDashBoardBtns)">
+            <CardFooter className="tableFooter">
                 <Dialog>
                     <DialogTrigger asChild className='w-full'><Button onClick= {() =>setRestaurantVariables(changeTable(restaurantVariables, null))} className='w-full'>Reserveren</Button></DialogTrigger>
                     <Reservation setRestaurantVariables={setRestaurantVariables} restaurantVariables={restaurantVariables} />

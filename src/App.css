@@ -99,30 +99,60 @@ html {
   color: var(--color-grey);
 }
 
-/* .tableDashboard {
+.tableDashboard {
   display: grid;
+  grid-template-rows: min-content 1fr min-content;
   align-items: center;
-  justify-items: center;
-} */
-
-.tableCard {
-  /* min-height: 10rem;
-  min-width: 25rem; */
 }
 
-.tableCard__content {
+.tableList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-rows: max-content;
+  gap: var(--sp-xs);
+}
+
+.tableCard {
+  min-height: 10rem;
+  min-width: 100%;
+
+  display: flex;
+}
+
+.tableFooter {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  gap: var(--sp-s);
+}
+
+.tableCard__header {
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: center;
+}
+
+.tableCard__content{
+  display: flex;
+  justify-content: space-between;
 }
 
 .tableCard__price {
   font-weight: 600;
+  align-self: end;
 }
 
 .tableCard__games {
   text-align: left;
   font-size: var(--fs--1);
+}
+
+.tableCard__badge {
+  padding: var(--sp-3xs) var(--sp-2xs);
+}
+
+.material-symbols-outlined {
+  font-size: 20px;
+  margin-left: var(--sp-3xs)
 }
 
 /* ----------------------------------------------- */
