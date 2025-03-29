@@ -130,6 +130,7 @@ const stopOrder = (restaurantVariables) => {
             newOrder: [],
 
             activeState: {
+                ...restaurantVariables.activeState,
                 dashboard: "tables",
                 tableId: null,
                 categoryId: 1,
@@ -152,6 +153,7 @@ const stopOrder = (restaurantVariables) => {
         : tmpResVar = {
             ...restaurantVariables,
             activeState: {
+                ...restaurantVariables.activeState,
                 dashboard: "tables",
                 tableId: null,
                 categoryId: 1,
@@ -174,6 +176,7 @@ const deleteReservation = (restaurantVariables) => {
         newOrder: [],
 
         activeState: {
+            ...restaurantVariables.activeState,
             dashboard: "tables",
             tableId: null,
             categoryId: 1,
@@ -196,6 +199,7 @@ const handlePay = (restaurantVariables) => {
             ),
 
         activeState: {
+            ...restaurantVariables.activeState,
             dashboard: "tables",
             tableId: null,
             categoryId: 1,

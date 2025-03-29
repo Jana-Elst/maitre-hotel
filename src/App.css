@@ -38,14 +38,6 @@
   --sp-xl-2xl: clamp(3rem, 2.4783rem + 2.6087vw, 4.5rem);
   --sp-2xl-3xl: clamp(4rem, 3.0435rem + 4.7826vw, 6.75rem);
 
-
-  /*custom grid*/
-  --detailDashboard: max-content 1fr;
-  --detailTableOrder: 10rem 5rem;
-  --menuItems: repeat(auto-fit, minmax(8rem, 1fr));
-  --clientDetail: min-content 1fr min-content;
-  --tableDashboard: 1fr min-content;
-  --tableDashBoardBtns: 1fr max-content;
 }
 
 
@@ -129,6 +121,11 @@ html {
 
 .tableCard {
   min-height: 10rem;
+  min-width: 100%;
+}
+
+.tableCard__button {
+  height: 100%;
   min-width: 100%;
 }
 
