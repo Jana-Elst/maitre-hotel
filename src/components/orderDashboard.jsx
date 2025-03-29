@@ -12,7 +12,7 @@ import {
 
 const orderDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
     return (
-        <Card className="dashboard orders h-[33vh] overflow-hidden">
+        <Card className="overflow-hidden">
             <CardHeader>
                 <CardTitle>Orders</CardTitle>
             </CardHeader>
@@ -35,7 +35,8 @@ const orderDashboard = ({ restaurantVariables, setRestaurantVariables }) => {
                                 )
                             }
                         </ul>)
-                    : (<p>Alle orders zijn verwerkt.</p>)}
+                    : ""
+                }
             </CardContent>
         </Card>
     );

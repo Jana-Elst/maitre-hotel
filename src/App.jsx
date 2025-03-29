@@ -1,6 +1,8 @@
 // Je kan bij een rekening elementen verwijderen door op het item te klikken.
 // Dit is een belangrijke hidden affordance ;))
 
+//ik gebruikte de component library shadcn.
+
 import { useState } from 'react'
 import './App.css'
 
@@ -106,9 +108,9 @@ function App() {
   );
 
   return (
-    <div className='h-dvh p-3' >
-      <Header />
-      <main className='grid grid-rows-[max-content] gap-3'>
+    <div className='app'>
+      <Header/>
+      <main className='dashboard'>
         <OrderDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
         <TableDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />
         <DetailDashboard restaurantVariables={restaurantVariables} setRestaurantVariables={setRestaurantVariables} />

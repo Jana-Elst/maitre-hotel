@@ -1,5 +1,6 @@
 :root {
   --color-black: #191A23;
+  --color-grey: gray;
   --color-text: var(--color-black);
 
   /* font family */
@@ -69,6 +70,59 @@ html {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
+}
+
+.app {
+  padding: var(--sp-s);
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+  gap: var(--sp-s);
+}
+
+.dashboard {
+  display: grid;
+  grid-template-rows: 33%, 1fr;
+  gap: var();
+  gap: var(--sp-s);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer {
+  text-align: center;
+  font-size: var(--fs--1);
+  color: var(--color-grey);
+}
+
+/* .tableDashboard {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+} */
+
+.tableCard {
+  /* min-height: 10rem;
+  min-width: 25rem; */
+}
+
+.tableCard__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.tableCard__price {
+  font-weight: 600;
+}
+
+.tableCard__games {
+  text-align: left;
+  font-size: var(--fs--1);
 }
 
 /* ----------------------------------------------- */

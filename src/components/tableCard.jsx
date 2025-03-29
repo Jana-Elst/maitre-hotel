@@ -9,6 +9,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen }) => {
     const total = getTotal(restaurantVariables, table.id);
@@ -59,7 +60,7 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen 
     return (
         <li>
             <button
-                className="min-w-55"
+                className="tableCard"
                 onClick={() => handleClick()}
                 disabled={isDisabled()}
             >
@@ -69,32 +70,31 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen 
                         ? <Card className={`${table.status === "unavailable" ? "border-red-300 bg-red-50 hover:bg-red-100" : table.status === "reservation" ? "border-amber-300 bg-amber-50 hover:bg-amber-100" : "border-green-300 bg-green-50 hover:bg-green-100"} min-h-30`}>
                             <CardHeader className="flex justify-between">
                                 <CardTitle className="">Tafel {table.id}</CardTitle>
-                                <CardDescription className={`font-medium ${table.status === "unavailable" ? "text-red-800" : table.status === "reservation" ? "text-amber-800" : "text-green-800"}`}>{table.status}</CardDescription>
+                                <CardDescription asChild>
+                                    <Badge className={`${table.status === "unavailable" ? "bg-red-400" : table.status === "reservation" ? "bg-amber-400" : "bg-green-500"}`}>
+                                        {
+                                            // status icon
+                                            table.status === 'unavailable' &&
+                                            restaurantVariables.bills.find(bill => bill.tableId === table.id && bill.paid === false)
+                                                .orders.map(orderId => {
+                                                    const order = restaurantVariables.orders.find(order => order.id === orderId)
+                                                    const statusOrdersTable = order.items.some(item => item.status !== 'served')
+                                                        ? "schedule"
+                                                        : "restaurant"
+
+                                                    return <p key={orderId} className="material-symbols-outlined">{statusOrdersTable}</p>;
+                                                })
+                                        }
+
+                                        <p>{table.status}</p>
+                                    </Badge>
+                                </CardDescription>
+
                             </CardHeader>
-                            <CardContent>
-
-                                {
-                                    // status icon
-                                    table.status === 'unavailable' &&
-                                    restaurantVariables.bills.find(bill => bill.tableId === table.id && bill.paid === false)
-                                        .orders.map(orderId => {
-                                            const order = restaurantVariables.orders.find(order => order.id === orderId)
-                                            const statusOrdersTable = order.items.some(item => item.status !== 'served')
-                                                ? "schedule"
-                                                : "restaurant"
-
-                                            return <p key={orderId} className="material-symbols-outlined">{statusOrdersTable}</p>;
-                                        })
-                                }
-
-                                {
-                                    //total
-                                    total ? <p className='font-medium'>€ {total.toFixed(2)}</p> : ""
-                                }
-
+                            <CardContent className="tableCard__content">
                                 {
                                     // games
-                                    <ul>
+                                    <ul className="tableCard__games">
                                         {
                                             restaurantVariables.games.map(game =>
                                                 tableHasGame(restaurantVariables, game, table.id)
@@ -104,6 +104,10 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen 
                                         }
                                     </ul>
 
+                                }
+                                {
+                                    //total
+                                    total ? <p className="tableCard__price">€ {total.toFixed(2)}</p> : ""
                                 }
                             </CardContent>
                         </Card>
