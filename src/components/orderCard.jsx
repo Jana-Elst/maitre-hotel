@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
     //status order 1 item aanpassen
@@ -68,31 +70,39 @@ const OrderCard = ({ order, setRestaurantVariables, restaurantVariables }) => {
     if (order.items) {
         return (
             <li key={order.id}>
-                <Card className="min-w-55 border-zinc-950">
-                    <CardHeader className="flex justify-between">
+                <Card className="orderCard border-zinc-950">
+                    <CardHeader className="orderCard__header">
                         <CardTitle>#{order.id}</CardTitle>
                         <CardDescription>Tafel {restaurantVariables.bills.find(bill => bill.orders.includes(order.id)).tableId}</CardDescription>
                     </CardHeader>
 
-                    <CardContent className="overflow-scroll">
-                        {
-                            order.items.map((item) => {
-                                const product = productData.products.find(p => p.id === item.productId);
-                                return (
-                                    <div key={`${order.id}-${item.productId}`} className="space-x-2">
-                                        <Checkbox
-                                            id={`${order.id}-${item.productId}`}
-                                            name={`${order.id}-${item.productId}`}
-                                            checked={item.status === "ordered" ? false : true}
-                                            onCheckedChange={e => changeStatus(item)
-                                            }
-                                        />
-                                        <label htmlFor={`${order.id}-${item.productId}`}>{item.amount} x {product.name}</label>
-                                    </div>
-                                )
-                            })
-                        }
-
+                    <CardContent>
+                        <ScrollArea className="h-30">
+                            {
+                                order.items.map((item) => {
+                                    const product = productData.products.find(p => p.id === item.productId);
+                                    return (
+                                        <div>
+                                            <div key={`${order.id}-${item.productId}`} className="space-x-2 p-1">
+                                                <Checkbox
+                                                    id={`${order.id}-${item.productId}`}
+                                                    name={`${order.id}-${item.productId}`}
+                                                    checked={item.status === "ordered" ? false : true}
+                                                    onCheckedChange={e => changeStatus(item)
+                                                    }
+                                                />
+                                                <label
+                                                    className={item.status !== "ordered" ? "text-zinc-500 line-through" : ""}
+                                                    htmlFor={`${order.id}-${item.productId}`}>
+                                                    {item.amount} x {product.name}
+                                                </label>
+                                            </div>
+                                            <Separator />
+                                        </div>
+                                    )
+                                })
+                            }
+                        </ScrollArea>
                     </CardContent>
                     <CardFooter className="flex justify-stretch w-full">
                         <Button

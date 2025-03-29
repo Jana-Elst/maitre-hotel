@@ -82,7 +82,7 @@ html {
 
 .dashboard {
   display: grid;
-  grid-template-rows: 33%, 1fr;
+  grid-template-rows: min-content 1fr;
   gap: var();
   gap: var(--sp-s);
 }
@@ -148,6 +148,30 @@ html {
 
 .tableCard__badge {
   padding: var(--sp-3xs) var(--sp-2xs);
+}
+
+.tableCard--reservation {
+  justify-content: center;
+}
+
+.ordersDashboard__content {
+  width: calc(100vw - 2*var(--sp-s));
+}
+
+.ordersDashboard__list {
+  display: flex;
+  gap: var(--sp-xs);
+  overflow: scroll;
+}
+
+.orderCard {
+  height: 100%;
+  width: 18rem;
+}
+
+.orderCard__header {
+  display: flex;
+  justify-content: space-between;
 }
 
 .material-symbols-outlined {

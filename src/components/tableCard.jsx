@@ -70,7 +70,7 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen 
                         ? <Card className={`tableCard ${table.status === "unavailable" ? "border-red-300 bg-red-50 hover:bg-red-100" : table.status === "reservation" ? "border-amber-300 bg-amber-50 hover:bg-amber-100" : "border-green-300 bg-green-50 hover:bg-green-100"} min-h-30`}>
                             <CardHeader className="tableCard__header">
                                 <CardTitle className="">Tafel {table.id}</CardTitle>
-                                <CardDescription asChild>
+                                <CardDescription>
                                     <Badge className={`tableCard__badge ${table.status === "unavailable" ? "bg-red-400" : table.status === "reservation" ? "bg-amber-400" : "bg-green-500"}`}>
                                         
                                         <p>{table.status}</p>
@@ -123,7 +123,7 @@ const TableCard = ({ table, restaurantVariables, setRestaurantVariables, screen 
                         </Card>
 
                         : screen === "reservationScreen"
-                            ? <Card className={`${isDisabled() ? "opacity-50" : "hover:bg-zinc-100"} ${table.id === restaurantVariables.activeState.tableId ? "bg-zinc-200 border-zinc-400" : ""} min-h-30`}>
+                            ? <Card className={`tableCard tableCard--reservation  ${isDisabled() ? "opacity-50" : "hover:bg-zinc-100"} ${table.id === restaurantVariables.activeState.tableId ? "bg-zinc-200 border-zinc-400" : ""} min-h-30`}>
                                 <CardHeader className="flex flex-col items-center">
                                     <CardTitle className="">Tafel {table.id}</CardTitle>
                                     <CardDescription>{table.status}</CardDescription>
